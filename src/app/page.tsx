@@ -5,7 +5,6 @@ import {
   BadgeCheck,
   Car as CarIcon,
   HandCoins,
-  MapPin,
   Phone,
   Ship,
   Truck,
@@ -14,9 +13,10 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/site/section-heading";
 import { VehicleCard } from "@/components/site/vehicle-card";
 import { SiteShell } from "@/components/site/site-shell";
+import { HeroCarousel, type HeroVehicle } from "@/components/site/hero-carousel";
 import { WhatsAppIcon } from "@/components/icons/whatsapp";
 import { JsonLd } from "@/components/site/json-ld";
-import { getFeaturedVehicles, getLatestVehicles, type VehicleWithImages } from "@/lib/vehicles";
+import { getFeaturedVehicles, getLatestVehicles } from "@/lib/vehicles";
 import { getActiveServices } from "@/lib/services-data";
 import { getSiteSettings } from "@/lib/settings";
 import { generalWhatsAppUrl } from "@/lib/whatsapp";
@@ -50,10 +50,30 @@ const WHY_CHOOSE = [
 ];
 
 export default async function HomePage() {
-  const [settings, services] = await Promise.all([getSiteSettings(), getActiveServices()]);
+  const [settings, services, featuredRaw, latest] = await Promise.all([
+    getSiteSettings(),
+    getActiveServices(),
+    getFeaturedVehicles(5),
+    getLatestVehicles(4),
+  ]);
 
-  let featured: VehicleWithImages[] = await getFeaturedVehicles(3);
-  const latest = await getLatestVehicles(4);
+  // Hero showcase: featured + available vehicles only (dynamic, no fake data).
+  const heroVehicles: HeroVehicle[] = featuredRaw.map((vehicle) => ({
+    id: vehicle.id,
+    slug: vehicle.slug,
+    make: vehicle.make,
+    model: vehicle.model,
+    year: vehicle.year,
+    transmission: vehicle.transmission,
+    fuelType: vehicle.fuelType,
+    mileage: vehicle.mileage,
+    price: vehicle.price,
+    status: vehicle.status,
+    imageUrl: vehicle.images[0]?.url ?? null,
+    imageAlt: vehicle.images[0]?.altText ?? null,
+  }));
+
+  let featured = featuredRaw.slice(0, 3);
   if (featured.length === 0) {
     featured = latest.slice(0, 3);
   }
@@ -81,53 +101,61 @@ export default async function HomePage() {
   return (
     <SiteShell>
       {/* ---------------------------------------------------------- HERO */}
-      <section className="relative -mt-16 flex min-h-[72svh] items-center overflow-hidden bg-charcoal lg:min-h-[78svh]">
-        <Image
-          src="/images/hero.jpg"
-          alt="Premium car showroom at Elly Magari car dealership in Mwanza, Tanzania"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/30"
-          aria-hidden="true"
-        />
+      <section
+        className="relative -mt-16 overflow-hidden bg-charcoal"
+        aria-labelledby="hero-heading"
+      >
+        {/* Ambient depth */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          <div className="absolute -left-32 -top-32 size-[26rem] rounded-full bg-gold/10 blur-[110px]" />
+          <div className="absolute -bottom-40 -right-28 size-[30rem] rounded-full bg-gold/10 blur-[120px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,164,92,0.08),transparent_55%)]" />
+        </div>
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:px-8 lg:pb-24 lg:pt-40">
-          <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-charcoal/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold backdrop-blur">
-              <MapPin className="size-3.5" aria-hidden="true" />
-              Pasiansi · Mwanza · Tanzania
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[2fr_3fr] lg:gap-14 lg:px-8 lg:pb-20 lg:pt-36">
+          {/* Copy */}
+          <div>
+            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+              <span className="h-px w-8 bg-gold/70" aria-hidden="true" />
+              Elly Magari
             </p>
-            <h1 className="mt-5 font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1
+              id="hero-heading"
+              className="mt-4 font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl xl:text-6xl"
+            >
               {settings.heroTitle}
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
+            <p className="mt-4 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
               {settings.heroSubtitle}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                asChild
-                size="lg"
-                className="h-12 bg-gold px-8 text-charcoal shadow-lg hover:bg-gold/90"
-              >
-                <Link href="/inventory">
-                  Explore Cars
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-12 border-white/40 bg-transparent px-8 text-white hover:bg-white/10 hover:text-white"
-              >
-                <Link href="/contact">Contact Us</Link>
-              </Button>
-            </div>
+
+            {/* Service highlights */}
+            <ul
+              className="mt-7 flex flex-wrap gap-2"
+              aria-label="Our services"
+            >
+              {[
+                { icon: CarIcon, label: "Buy" },
+                { icon: HandCoins, label: "Sell" },
+                { icon: Ship, label: "Import" },
+                { icon: Truck, label: "Transport" },
+              ].map((item) => (
+                <li
+                  key={item.label}
+                  className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/85"
+                >
+                  <item.icon className="size-3.5 text-gold" aria-hidden="true" />
+                  {item.label}
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {/* Featured vehicle showcase */}
+          <HeroCarousel
+            vehicles={heroVehicles}
+            whatsappNumber={settings.whatsappNumber}
+          />
         </div>
       </section>
 
