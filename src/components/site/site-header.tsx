@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Phone } from "lucide-react";
+import { LogIn, Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { WhatsAppIcon } from "@/components/icons/whatsapp";
@@ -98,32 +98,19 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${phone.replace(/\s/g, "")}`}
+          <Link
+            href="/admin/login"
             className={cn(
-              "hidden size-10 items-center justify-center rounded-full border transition-colors md:flex",
+              "flex size-10 items-center justify-center rounded-full border transition-colors",
               transparent
                 ? "border-white/30 text-white hover:bg-white/10"
                 : "border-border text-foreground hover:bg-muted",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
             )}
-            aria-label={`Call ${businessName} at ${phone}`}
+            aria-label="Log in to admin dashboard"
           >
-            <Phone className="size-4" />
-          </a>
-          <Button
-            asChild
-            className="hidden bg-charcoal text-white hover:bg-charcoal/90 sm:inline-flex"
-          >
-            <a
-              href={generalWhatsAppUrl(whatsappNumber)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsAppIcon />
-              WhatsApp
-            </a>
-          </Button>
+            <LogIn className="size-4" aria-hidden="true" />
+          </Link>
 
           {/* Mobile menu */}
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
