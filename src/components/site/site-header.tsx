@@ -57,35 +57,17 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center gap-3 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          className="flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           aria-label={`${businessName} — home`}
         >
           <Image
             src="/images/elly-magari-logo.jpg"
             alt={`${businessName} logo`}
-            width={44}
-            height={44}
-            className="size-11 rounded-lg object-cover"
+            width={48}
+            height={48}
+            className="size-12 rounded-lg object-cover"
             priority
           />
-          <span className="flex flex-col leading-tight">
-            <span
-              className={cn(
-                "font-display text-base font-bold tracking-wide transition-colors sm:text-lg",
-                transparent ? "text-white" : "text-foreground"
-              )}
-            >
-              {businessName.toUpperCase()}
-            </span>
-            <span
-              className={cn(
-                "text-[10px] font-medium uppercase tracking-[0.2em] transition-colors",
-                transparent ? "text-gold-soft" : "text-gold"
-              )}
-            >
-              Mwanza · Tanzania
-            </span>
-          </span>
         </Link>
 
         {/* Desktop nav */}
