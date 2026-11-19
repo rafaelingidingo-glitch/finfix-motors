@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  /* ELLY MAGARI brand palette */
+  --color-charcoal: #111315;
+  --color-charcoal-soft: #1d2023;
+  --color-gold: #c9a45c;
+  --color-gold-soft: #e5d9be;
+  --color-gold-tint: #faf6ee;
+  --color-surface: #f5f5f3;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #f5f5f3;
+  --foreground: #111315;
+  --card: #ffffff;
+  --card-foreground: #111315;
+  --popover: #ffffff;
+  --popover-foreground: #111315;
+  --primary: #111315;
+  --primary-foreground: #f5f5f3;
+  --secondary: #ffffff;
+  --secondary-foreground: #111315;
+  --muted: #ececea;
+  --muted-foreground: #5f6365;
+  --accent: #c9a45c;
+  --accent-foreground: #111315;
+  --destructive: #b3382c;
+  --border: #e3e3df;
+  --input: #e3e3df;
+  --ring: #c9a45c;
+  --chart-1: #c9a45c;
+  --chart-2: #111315;
+  --chart-3: #6f7276;
+  --chart-4: #e5d9be;
+  --chart-5: #8a6f3c;
+  --sidebar: #111315;
+  --sidebar-foreground: #f5f5f3;
+  --sidebar-primary: #c9a45c;
+  --sidebar-primary-foreground: #111315;
+  --sidebar-accent: #1d2023;
+  --sidebar-accent-foreground: #f5f5f3;
+  --sidebar-border: #2a2d30;
+  --sidebar-ring: #c9a45c;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Elegant thin scrollbar for long lists */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #c9a45c66 transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #c9a45c66;
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/* Premium display font helper */
+.font-display {
+  font-family: var(--font-heading), var(--font-body), system-ui, sans-serif;
+}

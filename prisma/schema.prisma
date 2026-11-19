@@ -1,0 +1,135 @@
+// ELLY MAGARI — Car Dealership Database Schema
+// NOTE: This project develops against SQLite (sandbox). For production with
+// PostgreSQL (Neon), change `provider` below to "postgresql" and set
+// DATABASE_URL to the Neon connection string. The schema is portable.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Admin users — secure dashboard access
+// ---------------------------------------------------------------------------
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("ADMIN") // "ADMIN" | "SUPERADMIN"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([email])
+}
+
+// ---------------------------------------------------------------------------
+// Vehicles — inventory items
+// ---------------------------------------------------------------------------
+model Vehicle {
+  id           String  @id @default(cuid())
+  slug         String  @unique
+  make         String
+  model        String
+  year         Int
+  price        Int // Price in Tanzanian Shillings (TZS)
+  transmission String // "Automatic" | "Manual"
+  fuelType     String // "Petrol" | "Diesel" | "Hybrid" | "Electric"
+  condition    String // "Brand New" | "Foreign Used" | "Locally Used"
+  mileage      Int? // kilometers
+  color        String?
+  engine       String? // e.g. "2500cc"
+  description  String?
+  status       String  @default("AVAILABLE") // "AVAILABLE" | "SOLD"
+  isFeatured   Boolean @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  images    VehicleImage[]
+  inquiries Inquiry[]
+
+  @@index([make])
+  @@index([status])
+  @@index([isFeatured])
+  @@index([year])
+  @@index([price])
+  @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// Vehicle images — stored on Cloudinary (or local fallback), never as blobs
+// ---------------------------------------------------------------------------
+model VehicleImage {
+  id        String  @id @default(cuid())
+  vehicleId String
+  url       String
+  publicId  String? // Cloudinary public id (null for local uploads)
+  altText   String?
+  sortOrder Int     @default(0)
+  createdAt DateTime @default(now())
+
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+
+  @@index([vehicleId])
+  @@index([vehicleId, sortOrder])
+}
+
+// ---------------------------------------------------------------------------
+// Services — editable "Our Services" content
+// ---------------------------------------------------------------------------
+model Service {
+  id          String  @id @default(cuid())
+  title       String
+  description String
+  icon        String  @default("car") // lucide icon key: car | ship | truck | hand-coins
+  sortOrder   Int     @default(0)
+  isActive    Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive, sortOrder])
+}
+
+// ---------------------------------------------------------------------------
+// Site settings — single editable row for business info & copy
+// ---------------------------------------------------------------------------
+model SiteSetting {
+  id           String   @id @default("main")
+  businessName String   @default("Elly Magari")
+  tagline      String   @default("Quality Cars. Trusted Service.")
+  phone        String   @default("+255786068760")
+  whatsappNumber String @default("+255786068760")
+  email        String   @default("")
+  address      String   @default("Pasiansi, Mwanza, Tanzania")
+  landmark     String   @default("Opposite Lenana Hotel")
+  instagram    String   @default("https://www.instagram.com/ellymagari")
+  heroTitle    String   @default("FIND YOUR NEXT DREAM CAR.")
+  heroSubtitle String   @default("Quality Cars. Trusted Service. Your Journey Starts With Us.")
+  aboutTitle   String   @default("About Elly Magari")
+  aboutText    String   @default("")
+  mapQuery     String   @default("Pasiansi, Mwanza, Tanzania")
+  updatedAt    DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Inquiries — contact form submissions (optionally tied to a vehicle)
+// ---------------------------------------------------------------------------
+model Inquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  message   String
+  vehicleId String?
+  status    String   @default("NEW") // "NEW" | "READ"
+  createdAt DateTime @default(now())
+
+  vehicle Vehicle? @relation(fields: [vehicleId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([createdAt])
+}
