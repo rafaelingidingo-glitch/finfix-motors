@@ -115,13 +115,9 @@ export default async function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[2fr_3fr] lg:gap-14 lg:px-8 lg:pb-20 lg:pt-36">
           {/* Copy */}
           <div>
-            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              <span className="h-px w-8 bg-gold/70" aria-hidden="true" />
-              Elly Magari
-            </p>
             <h1
               id="hero-heading"
-              className="mt-4 font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl xl:text-6xl"
+              className="font-display text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl xl:text-6xl"
             >
               {settings.heroTitle}
             </h1>

@@ -17,7 +17,7 @@ export const DEFAULT_SETTINGS = {
   landmark: "Opposite Lenana Hotel",
   instagram: "https://www.instagram.com/ellymagari",
   heroTitle: "FIND YOUR NEXT DREAM CAR.",
-  heroSubtitle: "Discover quality vehicles with Elly Magari.",
+  heroSubtitle: "Discover quality vehicles.",
   aboutTitle: "About Elly Magari",
   aboutText:
     "Elly Magari is a car dealership based in Pasiansi, Mwanza, Tanzania. We buy and sell quality vehicles, import cars on customer orders, provide reliable vehicle transportation across the country, and buy vehicles directly from owners. Visit our yard opposite Lenana Hotel — our team is ready to help you find your next car.",
