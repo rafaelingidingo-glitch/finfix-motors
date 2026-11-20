@@ -51,7 +51,6 @@ const CONDITION_OPTIONS: VehicleCondition[] = ["Brand New", "Foreign Used", "Loc
 const STATUS_OPTIONS: VehicleStatus[] = ["AVAILABLE", "SOLD"];
 
 const MAX_IMAGES = 12;
-const MAX_FILES_PER_REQUEST = 6;
 const UPLOAD_ACCEPT = "image/jpeg,image/png,image/webp";
 
 interface VehicleFormProps {
@@ -642,14 +641,13 @@ function ImageUploader({
 
     setUploading(true);
     try {
-      // Upload in batches of MAX_FILES_PER_REQUEST, accumulating locally.
+      // Upload ONE file per request: serverless hosts (e.g. Vercel) cap the
+      // request body at ~4.5 MB, so batching multiple images in one call
+      // would fail with 413. Sequential per-file uploads are safe everywhere.
       let current = [...images];
-      for (let i = 0; i < accepted.length; i += MAX_FILES_PER_REQUEST) {
-        const batch = accepted.slice(i, i + MAX_FILES_PER_REQUEST);
+      for (const file of accepted) {
         const formData = new FormData();
-        for (const file of batch) {
-          formData.append("files", file);
-        }
+        formData.append("files", file);
         const result = await apiFetch<{ images: { url: string; publicId: string | null }[] }>(
           "/api/admin/upload",
           { method: "POST", body: formData }
@@ -704,7 +702,7 @@ function ImageUploader({
             <ImagePlus className="size-6 text-gold" aria-hidden="true" />
             <span className="text-sm font-medium">Click to upload photos</span>
             <span className="text-xs text-muted-foreground">
-              JPG, PNG or WebP up to 5 MB each
+              JPG, PNG or WebP up to 4 MB each
             </span>
           </>
         )}

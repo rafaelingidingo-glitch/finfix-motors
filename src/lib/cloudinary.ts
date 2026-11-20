@@ -73,19 +73,24 @@ const ALLOWED_MIME: Record<string, string> = {
   "image/webp": "webp",
 };
 
-export const MAX_UPLOAD_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
+export const MAX_UPLOAD_SIZE_BYTES = 4 * 1024 * 1024; // 4 MB — stays safely under Vercel's 4.5 MB serverless request body limit
 
 export function validateImageFile(file: File): string | null {
   if (!ALLOWED_MIME[file.type]) {
     return "Unsupported file type. Use JPG, PNG or WebP images.";
   }
   if (file.size > MAX_UPLOAD_SIZE_BYTES) {
-    return "Image is too large. Maximum size is 5 MB.";
+    return "Image is too large. Maximum size is 4 MB.";
   }
   if (file.size === 0) {
     return "File is empty.";
   }
   return null;
+}
+
+/** True when running on Vercel's serverless runtime (read-only filesystem). */
+export function isServerlessReadOnlyFs(): boolean {
+  return Boolean(process.env.VERCEL);
 }
 
 /** Store an image buffer (Cloudinary when configured, else local disk). */
@@ -94,6 +99,13 @@ export async function storeImage(file: File): Promise<StoredImage> {
   const extension = ALLOWED_MIME[file.type] ?? "jpg";
   if (isCloudinaryConfigured()) {
     return uploadToCloudinary(buffer);
+  }
+  // Serverless platforms (Vercel) have a read-only filesystem — local fallback
+  // is impossible there, so fail with an actionable error instead.
+  if (isServerlessReadOnlyFs()) {
+    throw new Error(
+      "Image storage is not configured. Add the CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET environment variables."
+    );
   }
   return saveLocally(buffer, extension);
 }

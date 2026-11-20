@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+/** Health check endpoint for uptime monitoring / deployment verification. */
 export async function GET() {
-  return NextResponse.json({ message: "Hello, world!" });
+  return NextResponse.json({ status: "ok", timestamp: new Date().toISOString() });
 }

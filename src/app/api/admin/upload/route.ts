@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin, assertSameOrigin, jsonError } from "@/lib/api-utils";
-import { deleteStoredImage, isCloudinaryConfigured, storeImage, validateImageFile, type StoredImage } from "@/lib/cloudinary";
+import {
+  deleteStoredImage,
+  isCloudinaryConfigured,
+  isServerlessReadOnlyFs,
+  storeImage,
+  validateImageFile,
+  type StoredImage,
+} from "@/lib/cloudinary";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +16,7 @@ const MAX_FILES_PER_REQUEST = 6;
 /**
  * POST /api/admin/upload — secure server-side image upload.
  * Accepts multipart form-data with one or more `files`.
- * Storage: Cloudinary when configured, otherwise local public/uploads.
+ * Storage: Cloudinary when configured, otherwise local public/uploads (dev/self-host only).
  */
 export async function POST(req: NextRequest) {
   const originError = assertSameOrigin(req);
@@ -17,6 +24,14 @@ export async function POST(req: NextRequest) {
 
   const guard = await requireAdmin(req);
   if (!guard.ok) return guard.response;
+
+  // Fail fast with an actionable message when storage cannot work (Vercel).
+  if (!isCloudinaryConfigured() && isServerlessReadOnlyFs()) {
+    return jsonError(
+      503,
+      "Image storage is not configured. Add the CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET environment variables in your Vercel project settings."
+    );
+  }
 
   try {
     const formData = await req.formData();

@@ -22,6 +22,15 @@ export type AdminSession = {
 function getSecretKey(): Uint8Array {
   const secret =
     process.env.SESSION_SECRET ?? "dev-only-insecure-secret-change-in-production";
+  if (
+    process.env.NODE_ENV === "production" &&
+    !process.env.SESSION_SECRET
+  ) {
+    // Fail-safe reminder: unsigned fallback secret in production is dangerous.
+    console.error(
+      "SECURITY WARNING: SESSION_SECRET is not set — using an insecure development fallback. Set a strong random SESSION_SECRET environment variable before going live."
+    );
+  }
   return new TextEncoder().encode(secret);
 }
 
