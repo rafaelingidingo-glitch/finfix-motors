@@ -29,8 +29,8 @@ export async function GET(req: NextRequest) {
     const where: Record<string, unknown> = {};
     if (search) {
       where.OR = [
-        { make: { contains: search } },
-        { model: { contains: search } },
+        { make: { contains: search, mode: "insensitive" } },
+        { model: { contains: search, mode: "insensitive" } },
         { year: isNaN(Number(search)) ? undefined : Number(search) },
       ].filter(Boolean);
     }

@@ -1,14 +1,12 @@
 // ELLY MAGARI — Car Dealership Database Schema
-// NOTE: This project develops against SQLite (sandbox). For production with
-// PostgreSQL (Neon), change `provider` below to "postgresql" and set
-// DATABASE_URL to the Neon connection string. The schema is portable.
+// Production database: PostgreSQL on Neon. See .env DATABASE_URL.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

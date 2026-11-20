@@ -33,7 +33,7 @@ async function main() {
       landmark: "Opposite Lenana Hotel",
       instagram: "https://www.instagram.com/ellymagari",
       heroTitle: "FIND YOUR NEXT DREAM CAR.",
-      heroSubtitle: "Quality Cars. Trusted Service. Your Journey Starts With Us.",
+      heroSubtitle: "Discover quality vehicles.",
       aboutTitle: "About Elly Magari",
       aboutText: DEFAULT_ABOUT,
       mapQuery: "Pasiansi, Mwanza, Tanzania",
