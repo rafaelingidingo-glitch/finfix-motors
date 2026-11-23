@@ -158,7 +158,7 @@ export function SettingsForm() {
                 type="tel"
                 value={settings.whatsappNumber}
                 onChange={(v) => update("whatsappNumber", v)}
-                helper="International format, e.g. +255786068760 — used for all WhatsApp links."
+                helper="International format, e.g. +255650090909 — used for all WhatsApp links."
               />
               <SettingsField
                 id="set-email"
@@ -185,7 +185,7 @@ export function SettingsForm() {
                 label="Landmark"
                 value={settings.landmark}
                 onChange={(v) => update("landmark", v)}
-                helper="e.g. Opposite Lenana Hotel"
+                helper="e.g. Near City Centre, along Main Road"
               />
             </div>
           </CardContent>
@@ -263,7 +263,7 @@ export function SettingsForm() {
               label="Map location query"
               value={settings.mapQuery}
               onChange={(v) => update("mapQuery", v)}
-              helper="e.g. Pasiansi, Mwanza, Tanzania"
+              helper="e.g. Dar es Salaam, Tanzania"
             />
           </CardContent>
         </Card>

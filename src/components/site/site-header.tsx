@@ -57,11 +57,11 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+          className="flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           aria-label={`${businessName} — home`}
         >
           <Image
-            src="/images/elly-magari-logo.jpg"
+            src="/images/finfix-logo.jpg"
             alt={`${businessName} logo`}
             width={48}
             height={48}
@@ -83,13 +83,13 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
                   transparent
                     ? "text-white/90 hover:bg-white/10 hover:text-white"
                     : "text-foreground/80 hover:bg-muted hover:text-foreground",
-                  active && (transparent ? "text-gold" : "text-gold")
+                  active && (transparent ? "text-brand-soft" : "text-brand")
                 )}
                 aria-current={active ? "page" : undefined}
               >
                 {link.label}
                 {active && (
-                  <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-gold" />
+                  <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-brand" />
                 )}
               </Link>
             );
@@ -105,7 +105,7 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
               transparent
                 ? "border-white/30 text-white hover:bg-white/10"
                 : "border-border text-foreground hover:bg-muted",
-              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             )}
             aria-label="Log in to admin dashboard"
           >
@@ -131,7 +131,7 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
               <div className="flex h-full flex-col">
                 <div className="flex items-center gap-3 border-b border-border p-4">
                   <Image
-                    src="/images/elly-magari-logo.jpg"
+                    src="/images/finfix-logo.jpg"
                     alt={`${businessName} logo`}
                     width={40}
                     height={40}
@@ -152,7 +152,7 @@ export function SiteHeader({ businessName, phone, whatsappNumber }: HeaderProps)
                         className={cn(
                           "rounded-lg px-4 py-3 text-sm font-medium transition-colors",
                           active
-                            ? "bg-gold-tint text-gold"
+                            ? "bg-brand-tint text-brand"
                             : "text-foreground/80 hover:bg-muted hover:text-foreground"
                         )}
                         aria-current={active ? "page" : undefined}

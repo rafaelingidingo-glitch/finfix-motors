@@ -56,8 +56,8 @@ export default async function AdminDashboardPage() {
       label: "Available",
       value: available,
       icon: CircleCheck,
-      valueClass: "text-gold",
-      iconClass: "text-gold",
+      valueClass: "text-brand",
+      iconClass: "text-brand",
     },
     {
       label: "Sold",
@@ -77,8 +77,8 @@ export default async function AdminDashboardPage() {
       label: "New Inquiries",
       value: newInquiries,
       icon: Inbox,
-      valueClass: "text-gold",
-      iconClass: "text-gold",
+      valueClass: "text-brand",
+      iconClass: "text-brand",
       span: true,
     },
   ];
@@ -185,7 +185,7 @@ export default async function AdminDashboardPage() {
                         <TableCell>
                           <Link
                             href={`/admin/vehicles/${vehicle.id}/edit`}
-                            className="font-medium underline-offset-4 hover:text-gold hover:underline"
+                            className="font-medium underline-offset-4 hover:text-brand hover:underline"
                           >
                             {vehicle.year} {vehicle.make} {vehicle.model}
                           </Link>
@@ -201,7 +201,7 @@ export default async function AdminDashboardPage() {
                             className={cn(
                               "mx-auto size-4",
                               vehicle.isFeatured
-                                ? "fill-gold text-gold"
+                                ? "fill-brand text-brand"
                                 : "text-muted-foreground/30"
                             )}
                             aria-hidden="true"
@@ -232,7 +232,7 @@ function StatusBadge({ status }: { status: string }) {
     <Badge
       className={cn(
         "border-transparent",
-        isAvailable ? "bg-gold-tint text-[#8a6f3c]" : "bg-charcoal text-white"
+        isAvailable ? "bg-brand-tint text-brand" : "bg-charcoal text-white"
       )}
     >
       {isAvailable ? "Available" : "Sold"}

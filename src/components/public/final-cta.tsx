@@ -16,7 +16,7 @@ type FinalCtaProps = {
 export function FinalCta({
   whatsappNumber,
   title = "Ready to Get Started?",
-  description = "Visit our yard in Pasiansi, Mwanza or reach out on WhatsApp — our team is ready to help you find or sell your next vehicle.",
+  description = "Reach us in Dar es Salaam or Dodoma, or send us a WhatsApp message — our team is ready to help you find or sell your next vehicle.",
 }: FinalCtaProps) {
   return (
     <section className="py-14 sm:py-20" aria-label="Contact call to action">
@@ -31,7 +31,7 @@ export function FinalCta({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button
               asChild
-              className="h-11 bg-gold text-charcoal hover:bg-gold/90"
+              className="h-11 bg-brand text-white hover:bg-brand/90"
             >
               <a
                 href={generalWhatsAppUrl(whatsappNumber)}

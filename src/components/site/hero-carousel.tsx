@@ -97,7 +97,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
     return (
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-charcoal-soft shadow-2xl shadow-black/50">
         <div className="flex aspect-[16/9] flex-col items-center justify-center gap-3 p-6 text-center">
-          <span className="flex size-14 items-center justify-center rounded-full bg-gold/10 text-gold">
+          <span className="flex size-14 items-center justify-center rounded-full bg-brand/10 text-brand-soft">
             <CarIcon className="size-7" aria-hidden="true" />
           </span>
           <h2 className="font-display text-lg font-bold text-white sm:text-xl">
@@ -111,7 +111,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
         <div className="flex flex-col gap-2 p-4 sm:flex-row sm:p-5">
           <Button
             asChild
-            className="h-11 flex-1 bg-gold text-charcoal hover:bg-gold/90"
+            className="h-11 flex-1 bg-brand text-white hover:bg-brand/90"
           >
             <a
               href={generalWhatsAppUrl(whatsappNumber)}
@@ -244,7 +244,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                         src={current.imageUrl as string}
                         alt={
                           current.imageAlt ??
-                          `${current.year} ${current.make} ${current.model} at Elly Magari Mwanza`
+                          `${current.year} ${current.make} ${current.model} at Finfix Motors Tanzania`
                         }
                         fill
                         priority={index === 0}
@@ -264,7 +264,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                       />
                     ) : (
                       <div className="flex h-full flex-col items-center justify-center gap-2 text-white/50">
-                        <CarIcon className="size-10 text-gold/60" aria-hidden="true" />
+                        <CarIcon className="size-10 text-brand/60" aria-hidden="true" />
                         <span className="text-sm">Image coming soon</span>
                       </div>
                     )}
@@ -287,7 +287,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                   {/* Whole-image link to the vehicle details page */}
                   <Link
                     href={`/vehicles/${current.slug}`}
-                    className="absolute inset-0 z-0 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-gold"
+                    className="absolute inset-0 z-0 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-brand-soft"
                     aria-label={`View details of ${current.year} ${current.make} ${current.model}`}
                     tabIndex={-1}
                   >
@@ -298,7 +298,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                   <Badge
                     className={cn(
                       "absolute left-3 top-3 z-10 border-none px-3 py-1 text-xs font-semibold uppercase tracking-wide",
-                      isSold ? "bg-charcoal text-white" : "bg-gold text-charcoal"
+                      isSold ? "bg-charcoal text-white" : "bg-brand text-white"
                     )}
                   >
                     {isSold ? "Sold" : "Available"}
@@ -311,31 +311,31 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                     <h3 className="min-w-0 flex-1 truncate font-display text-lg font-bold text-white sm:text-xl">
                       <Link
                         href={`/vehicles/${current.slug}`}
-                        className="transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                        className="transition-colors hover:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft"
                       >
                         {current.year} {current.make} {current.model}
                       </Link>
                     </h3>
-                    <p className="shrink-0 font-display text-lg font-bold text-gold sm:text-xl">
+                    <p className="shrink-0 font-display text-lg font-bold text-brand-soft sm:text-xl">
                       {formatTZSShort(current.price)}
                     </p>
                   </div>
 
                   <div className="mt-3 grid grid-cols-2 gap-1.5 text-xs text-white/65 sm:grid-cols-4">
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+                      <Calendar className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
                       {current.year}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Settings2 className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+                      <Settings2 className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
                       {current.transmission}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Fuel className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+                      <Fuel className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
                       {current.fuelType}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Gauge className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+                      <Gauge className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
                       {current.mileage != null
                         ? `${new Intl.NumberFormat("en-US").format(current.mileage)} km`
                         : "—"}
@@ -345,7 +345,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                   <div className="mt-4 flex items-center gap-2">
                     <Button
                       asChild
-                      className="h-10 flex-1 bg-gold text-charcoal hover:bg-gold/90"
+                      className="h-10 flex-1 bg-brand text-white hover:bg-brand/90"
                     >
                       <Link href={`/vehicles/${current.slug}`}>
                         View Details
@@ -377,7 +377,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                 type="button"
                 onClick={goPrev}
                 aria-label="Previous vehicle"
-                className="absolute left-3 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-charcoal/60 text-white backdrop-blur transition-colors hover:bg-gold hover:text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="absolute left-3 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-charcoal/60 text-white backdrop-blur transition-colors hover:bg-brand hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 <ChevronLeft className="size-5" aria-hidden="true" />
               </button>
@@ -385,7 +385,7 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                 type="button"
                 onClick={goNext}
                 aria-label="Next vehicle"
-                className="absolute right-3 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-charcoal/60 text-white backdrop-blur transition-colors hover:bg-gold hover:text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                className="absolute right-3 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-charcoal/60 text-white backdrop-blur transition-colors hover:bg-brand hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               >
                 <ChevronRight className="size-5" aria-hidden="true" />
               </button>
@@ -404,19 +404,19 @@ export function HeroCarousel({ vehicles, whatsappNumber }: HeroCarouselProps) {
                 aria-label={`Show vehicle ${i + 1} of ${count}: ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                 aria-current={i === index ? "true" : undefined}
                 className={cn(
-                  "relative overflow-hidden rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+                  "relative overflow-hidden rounded-full transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
                   i === index ? "h-2 w-10 bg-white/25" : "h-2 w-2 bg-white/30 hover:bg-white/60"
                 )}
               >
                 {i === index && (
                   <span
                     key={`progress-${index}`}
-                    className="hero-progress absolute inset-y-0 left-0 bg-gold"
+                    className="hero-progress absolute inset-y-0 left-0 bg-brand"
                     style={progressStyle}
                     onAnimationEnd={goNext}
                   />
                 )}
-                {i < index && <span className="absolute inset-0 bg-gold/80" aria-hidden="true" />}
+                {i < index && <span className="absolute inset-0 bg-brand/80" aria-hidden="true" />}
               </button>
             ))}
           </div>

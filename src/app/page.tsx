@@ -20,6 +20,7 @@ import { getFeaturedVehicles, getLatestVehicles } from "@/lib/vehicles";
 import { getActiveServices } from "@/lib/services-data";
 import { getSiteSettings } from "@/lib/settings";
 import { generalWhatsAppUrl } from "@/lib/whatsapp";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-dynamic";
 
@@ -32,8 +33,8 @@ const SERVICE_ICONS = {
 
 const WHY_CHOOSE = [
   {
-    title: "Local Expertise in Mwanza",
-    text: "Based in Pasiansi, Mwanza, we understand the local market and which vehicles suit Tanzanian roads and conditions.",
+    title: "Two Locations: Dar es Salaam & Dodoma",
+    text: "We are available in two regions — Dar es Salaam and Dodoma — so you can reach us where you are and find the right vehicle for Tanzanian roads and conditions.",
   },
   {
     title: "Import Made Simple",
@@ -41,11 +42,11 @@ const WHY_CHOOSE = [
   },
   {
     title: "Straightforward Process",
-    text: "From first inquiry to ownership, we keep things clear, honest and pressure-free. Visit our yard and see the vehicles yourself.",
+    text: "From first inquiry to ownership, we keep things clear, honest and pressure-free. Visit us and see the vehicles yourself.",
   },
   {
     title: "We Also Buy Your Car",
-    text: "Skip the hassle of selling privately — get a direct, fair offer from Elly Magari for your current vehicle.",
+    text: "Skip the hassle of selling privately — get a direct, fair offer from Finfix Motors for your current vehicle.",
   },
 ];
 
@@ -84,17 +85,23 @@ export default async function HomePage() {
     "@type": "AutoDealer",
     name: settings.businessName,
     description:
-      "Car dealership in Pasiansi, Mwanza, Tanzania. Buying and selling vehicles, vehicle importation on customer orders, vehicle transportation, and buying vehicles directly from customers.",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+      "Car dealership in Dar es Salaam and Dodoma, Tanzania. Waagizaji wa magari aina yote — buying and selling vehicles, vehicle importation on customer orders, vehicle transportation, and buying vehicles directly from customers.",
+    url: getSiteUrl(),
     telephone: settings.phone,
-    image: `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/images/elly-magari-logo.jpg`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Pasiansi",
-      addressLocality: "Mwanza",
-      addressCountry: "TZ",
-    },
-    areaServed: ["Mwanza", "Tanzania"],
+    image: `${getSiteUrl()}/images/finfix-logo.jpg`,
+    address: [
+      {
+        "@type": "PostalAddress",
+        addressLocality: "Dar es Salaam",
+        addressCountry: "TZ",
+      },
+      {
+        "@type": "PostalAddress",
+        addressLocality: "Dodoma",
+        addressCountry: "TZ",
+      },
+    ],
+    areaServed: ["Dar es Salaam", "Dodoma", "Tanzania"],
     sameAs: settings.instagram ? [settings.instagram] : undefined,
   };
 
@@ -107,9 +114,9 @@ export default async function HomePage() {
       >
         {/* Ambient depth */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute -left-32 -top-32 size-[26rem] rounded-full bg-gold/10 blur-[110px]" />
-          <div className="absolute -bottom-40 -right-28 size-[30rem] rounded-full bg-gold/10 blur-[120px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(201,164,92,0.08),transparent_55%)]" />
+          <div className="absolute -left-32 -top-32 size-[26rem] rounded-full bg-brand/10 blur-[110px]" />
+          <div className="absolute -bottom-40 -right-28 size-[30rem] rounded-full bg-brand/10 blur-[120px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(227,30,36,0.10),transparent_55%)]" />
         </div>
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:grid-cols-[2fr_3fr] lg:gap-14 lg:px-8 lg:pb-20 lg:pt-36">
@@ -140,7 +147,7 @@ export default async function HomePage() {
                   key={item.label}
                   className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/85"
                 >
-                  <item.icon className="size-3.5 text-gold" aria-hidden="true" />
+                  <item.icon className="size-3.5 text-brand-soft" aria-hidden="true" />
                   {item.label}
                 </li>
               ))}
@@ -165,7 +172,7 @@ export default async function HomePage() {
             { icon: HandCoins, title: "We Buy Cars", text: "Sell your vehicle directly to us" },
           ].map((item) => (
             <div key={item.title} className="flex items-start gap-3">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gold-tint text-gold">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand">
                 <item.icon className="size-5" aria-hidden="true" />
               </span>
               <div>
@@ -183,7 +190,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Showroom"
             title="Featured Vehicles"
-            description="A selection of vehicles currently highlighted by our team. Visit our Pasiansi yard to view them in person."
+            description="A selection of vehicles currently highlighted by our team. Visit our yards in Dar es Salaam or Dodoma to view them in person."
           />
           {featured.length > 0 ? (
             <>
@@ -236,7 +243,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="What We Do"
             title="Our Services"
-            description="From finding the right car to delivering it to your door — Elly Magari supports every step of your vehicle journey."
+            description="From finding the right car to delivering it to your door — Finfix Motors supports every step of your vehicle journey."
           />
           <div className="mt-10 grid gap-5 sm:mt-12 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service) => {
@@ -244,9 +251,9 @@ export default async function HomePage() {
               return (
                 <article
                   key={service.id}
-                  className="group flex h-full flex-col rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-lg"
+                  className="group flex h-full flex-col rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-lg"
                 >
-                  <span className="flex size-12 items-center justify-center rounded-xl bg-charcoal text-gold transition-colors group-hover:bg-gold group-hover:text-charcoal">
+                  <span className="flex size-12 items-center justify-center rounded-xl bg-charcoal text-brand-soft transition-colors group-hover:bg-brand group-hover:text-white">
                     <Icon className="size-6" aria-hidden="true" />
                   </span>
                   <h3 className="mt-5 font-display text-lg font-bold text-foreground">
@@ -257,7 +264,7 @@ export default async function HomePage() {
                   </p>
                   <Link
                     href="/contact"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-colors hover:text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand transition-colors hover:text-charcoal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                   >
                     Contact Us
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -276,19 +283,19 @@ export default async function HomePage() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
               <Image
                 src="/images/about-showroom.jpg"
-                alt="Inside the Elly Magari car dealership showroom in Mwanza"
+                alt="Inside the Finfix Motors car dealership showroom in Tanzania"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-5 left-5 right-5 rounded-xl border border-gold/30 bg-charcoal px-5 py-4 text-white shadow-xl sm:left-8 sm:right-auto sm:max-w-xs">
-              <p className="flex items-center gap-2 text-sm font-semibold text-gold">
+            <div className="absolute -bottom-5 left-5 right-5 rounded-xl border border-brand/30 bg-charcoal px-5 py-4 text-white shadow-xl sm:left-8 sm:right-auto sm:max-w-xs">
+              <p className="flex items-center gap-2 text-sm font-semibold text-brand-soft">
                 <BadgeCheck className="size-4" aria-hidden="true" />
-                Your Journey Starts With Us
+                Exceptional Service, Extraordinary Vehicle
               </p>
               <p className="mt-1 text-xs leading-relaxed text-white/70">
-                Visit our yard in Pasiansi, Mwanza — opposite Lenana Hotel.
+                Waagizaji wa Magari Aina Yote — Dar es Salaam & Dodoma.
               </p>
             </div>
           </div>
@@ -296,14 +303,14 @@ export default async function HomePage() {
           <div className="order-1 lg:order-2">
             <SectionHeading
               align="left"
-              eyebrow="Why Elly Magari"
-              title="Why Choose Elly Magari?"
-              description="A trusted partner for buying, selling and importing vehicles in Mwanza and across Tanzania."
+              eyebrow="Why Finfix Motors"
+              title="Why Choose Finfix Motors?"
+              description="A trusted partner for buying, selling and importing vehicles in Dar es Salaam, Dodoma and across Tanzania."
             />
             <ul className="mt-8 space-y-5">
               {WHY_CHOOSE.map((item, index) => (
                 <li key={item.title} className="flex gap-4">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gold-tint font-display text-sm font-bold text-gold">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-tint font-display text-sm font-bold text-brand">
                     {index + 1}
                   </span>
                   <div>
@@ -333,7 +340,7 @@ export default async function HomePage() {
               <Button
                 asChild
                 variant="ghost"
-                className="shrink-0 text-gold hover:bg-gold-tint hover:text-gold"
+                className="shrink-0 text-brand hover:bg-brand-tint hover:text-brand"
               >
                 <Link href="/inventory">
                   View Inventory
@@ -357,11 +364,11 @@ export default async function HomePage() {
       {/* ------------------------------------------------------ CTA BAND */}
       <section className="relative overflow-hidden bg-charcoal py-16 sm:py-20" aria-labelledby="cta-heading">
         <div
-          className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-brand/10 blur-3xl"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -bottom-24 -left-24 size-72 rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -bottom-24 -left-24 size-72 rounded-full bg-brand/10 blur-3xl"
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
@@ -369,14 +376,14 @@ export default async function HomePage() {
             Ready to Find Your Next Car?
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base">
-            Visit us at Pasiansi, Mwanza — opposite Lenana Hotel — or reach out directly. Our team
+            Visit us in Dar es Salaam or Dodoma — or reach out directly. Our team
             is ready to help you buy, sell or import your next vehicle.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button
               asChild
               size="lg"
-              className="h-12 bg-gold px-8 text-charcoal hover:bg-gold/90"
+              className="h-12 bg-brand px-8 text-white hover:bg-brand/90"
             >
               <a
                 href={generalWhatsAppUrl(settings.whatsappNumber)}

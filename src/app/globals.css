@@ -41,12 +41,12 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  /* ELLY MAGARI brand palette */
+  /* FINFIX MOTORS brand palette (red / black) */
   --color-charcoal: #111315;
   --color-charcoal-soft: #1d2023;
-  --color-gold: #c9a45c;
-  --color-gold-soft: #e5d9be;
-  --color-gold-tint: #faf6ee;
+  --color-brand: #e31e24;
+  --color-brand-soft: #ff6b6e;
+  --color-brand-tint: #fdf0f1;
   --color-surface: #f5f5f3;
 }
 
@@ -64,25 +64,25 @@
   --secondary-foreground: #111315;
   --muted: #ececea;
   --muted-foreground: #5f6365;
-  --accent: #c9a45c;
-  --accent-foreground: #111315;
-  --destructive: #b3382c;
+  --accent: #e31e24;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
   --border: #e3e3df;
   --input: #e3e3df;
-  --ring: #c9a45c;
-  --chart-1: #c9a45c;
+  --ring: #e31e24;
+  --chart-1: #e31e24;
   --chart-2: #111315;
   --chart-3: #6f7276;
-  --chart-4: #e5d9be;
-  --chart-5: #8a6f3c;
+  --chart-4: #ff6b6e;
+  --chart-5: #a3121b;
   --sidebar: #111315;
   --sidebar-foreground: #f5f5f3;
-  --sidebar-primary: #c9a45c;
-  --sidebar-primary-foreground: #111315;
+  --sidebar-primary: #e31e24;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #1d2023;
   --sidebar-accent-foreground: #f5f5f3;
   --sidebar-border: #2a2d30;
-  --sidebar-ring: #c9a45c;
+  --sidebar-ring: #e31e24;
 }
 
 @layer base {
@@ -101,14 +101,14 @@
   /* Elegant thin scrollbar for long lists */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: #c9a45c66 transparent;
+    scrollbar-color: #e31e2459 transparent;
   }
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #c9a45c66;
+    background-color: #e31e2459;
     border-radius: 9999px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {

@@ -465,7 +465,7 @@ export function VehicleForm({ mode, vehicleId }: VehicleFormProps) {
                   </Select>
                 </Field>
 
-                <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-gold-tint/50 px-4 py-3 sm:col-span-2">
+                <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-brand-tint/50 px-4 py-3 sm:col-span-2">
                   <div>
                     <Label htmlFor="veh-featured" className="font-medium">
                       Featured
@@ -688,18 +688,18 @@ function ImageUploader({
         disabled={disabled || uploading}
         aria-label="Upload photos"
         className={cn(
-          "relative flex min-h-28 w-full flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-border bg-muted/40 px-4 py-6 text-center transition-colors hover:border-gold hover:bg-gold-tint/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "relative flex min-h-28 w-full flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-border bg-muted/40 px-4 py-6 text-center transition-colors hover:border-brand hover:bg-brand-tint/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           (disabled || uploading) && "pointer-events-none opacity-60"
         )}
       >
         {uploading ? (
           <>
-            <Loader2 className="size-6 animate-spin text-gold" aria-hidden="true" />
+            <Loader2 className="size-6 animate-spin text-brand" aria-hidden="true" />
             <span className="text-sm font-medium">Uploading…</span>
           </>
         ) : (
           <>
-            <ImagePlus className="size-6 text-gold" aria-hidden="true" />
+            <ImagePlus className="size-6 text-brand" aria-hidden="true" />
             <span className="text-sm font-medium">Click to upload photos</span>
             <span className="text-xs text-muted-foreground">
               JPG, PNG or WebP up to 4 MB each
@@ -721,7 +721,7 @@ function ImageUploader({
                   className="object-cover"
                 />
                 {index === 0 ? (
-                  <Badge className="absolute left-1.5 top-1.5 border-transparent bg-gold text-charcoal">
+                  <Badge className="absolute left-1.5 top-1.5 border-transparent bg-brand text-white">
                     Main
                   </Badge>
                 ) : null}

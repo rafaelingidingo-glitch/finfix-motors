@@ -11,7 +11,7 @@ export default function NotFound() {
     <SiteShell>
       <section className="flex min-h-[60svh] items-center justify-center bg-background px-4 py-16">
         <div className="mx-auto max-w-md text-center">
-          <p className="font-display text-6xl font-extrabold text-gold">404</p>
+          <p className="font-display text-6xl font-extrabold text-brand">404</p>
           <h1 className="mt-4 font-display text-2xl font-bold uppercase tracking-tight text-foreground">
             Page Not Found
           </h1>

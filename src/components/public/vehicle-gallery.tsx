@@ -38,7 +38,7 @@ export function VehicleGallery({ images, title }: VehicleGalleryProps) {
 
   const safeIndex = Math.min(selected, images.length - 1);
   const main = images[safeIndex];
-  const mainAlt = main.altText?.trim() || `${title} at Elly Magari, Mwanza`;
+  const mainAlt = main.altText?.trim() || `${title} at Finfix Motors, Tanzania`;
 
   return (
     <div>
@@ -75,9 +75,9 @@ export function VehicleGallery({ images, title }: VehicleGalleryProps) {
               aria-pressed={index === safeIndex}
               aria-label={`View image ${index + 1} of ${images.length}`}
               className={cn(
-                "relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-muted transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold",
+                "relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-muted transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
                 index === safeIndex
-                  ? "ring-2 ring-gold ring-offset-2 ring-offset-background"
+                  ? "ring-2 ring-brand ring-offset-2 ring-offset-background"
                   : "opacity-80 hover:opacity-100"
               )}
             >

@@ -366,7 +366,7 @@ export function VehiclesManager() {
                         <TableCell>
                           <Link
                             href={`/admin/vehicles/${vehicle.id}/edit`}
-                            className="font-medium underline-offset-4 hover:text-gold hover:underline"
+                            className="font-medium underline-offset-4 hover:text-brand hover:underline"
                           >
                             {vehicle.year} {vehicle.make} {vehicle.model}
                           </Link>
@@ -379,7 +379,7 @@ export function VehiclesManager() {
                             className={cn(
                               "border-transparent",
                               vehicle.status === "AVAILABLE"
-                                ? "bg-gold-tint text-[#8a6f3c]"
+                                ? "bg-brand-tint text-brand"
                                 : "bg-charcoal text-white"
                             )}
                           >

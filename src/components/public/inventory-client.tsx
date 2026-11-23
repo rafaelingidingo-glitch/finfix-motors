@@ -508,7 +508,7 @@ export function InventoryClient({ whatsappNumber }: InventoryClientProps) {
       <aside className="hidden lg:block" aria-label="Inventory filters">
         <div className="rounded-xl border border-border bg-card p-5 lg:sticky lg:top-24">
           <h2 className="mb-5 flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wide">
-            <SlidersHorizontal className="size-4 text-gold" aria-hidden="true" />
+            <SlidersHorizontal className="size-4 text-brand" aria-hidden="true" />
             Filters
           </h2>
           {filtersPanel}
@@ -530,7 +530,7 @@ export function InventoryClient({ whatsappNumber }: InventoryClientProps) {
                 <SlidersHorizontal className="size-4" aria-hidden="true" />
                 Filters
                 {activeCount > 0 && (
-                  <Badge className="ml-1 border-none bg-gold px-2 py-0 text-xs font-bold text-charcoal">
+                  <Badge className="ml-1 border-none bg-brand px-2 py-0 text-xs font-bold text-white">
                     {activeCount}
                   </Badge>
                 )}

@@ -8,20 +8,20 @@ import type { SiteSetting } from "@prisma/client";
 
 export const DEFAULT_SETTINGS = {
   id: "main",
-  businessName: "Elly Magari",
-  tagline: "Quality Cars. Trusted Service.",
-  phone: "+255786068760",
-  whatsappNumber: "+255786068760",
+  businessName: "Finfix Motors Limited",
+  tagline: "Exceptional Service, Extraordinary Vehicle.",
+  phone: "+255650090909",
+  whatsappNumber: "+255650090909",
   email: "",
-  address: "Pasiansi, Mwanza, Tanzania",
-  landmark: "Opposite Lenana Hotel",
-  instagram: "https://www.instagram.com/ellymagari",
+  address: "Dar es Salaam & Dodoma, Tanzania",
+  landmark: "Waagizaji wa Magari Aina Yote",
+  instagram: "",
   heroTitle: "FIND YOUR NEXT DREAM CAR.",
-  heroSubtitle: "Discover quality vehicles.",
-  aboutTitle: "About Elly Magari",
+  heroSubtitle: "Waagizaji wa Magari Aina Yote — Dar es Salaam & Dodoma.",
+  aboutTitle: "About Finfix Motors Limited",
   aboutText:
-    "Elly Magari is a car dealership based in Pasiansi, Mwanza, Tanzania. We buy and sell quality vehicles, import cars on customer orders, provide reliable vehicle transportation across the country, and buy vehicles directly from owners. Visit our yard opposite Lenana Hotel — our team is ready to help you find your next car.",
-  mapQuery: "Pasiansi, Mwanza, Tanzania",
+    "Finfix Motors Limited is a trusted car dealership serving Dar es Salaam and Dodoma, Tanzania. We deal in all types of vehicles — buying and selling quality cars, importing vehicles on customer orders, providing reliable vehicle transportation across the country, and buying vehicles directly from owners. Find us on 0650 090 909 or 0650 050 505 — our team is ready to help you find your next car.",
+  mapQuery: "Dar es Salaam, Tanzania",
   updatedAt: new Date(),
 } satisfies SiteSetting;
 

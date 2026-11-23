@@ -41,7 +41,7 @@ async function uploadToCloudinary(buffer: Buffer): Promise<StoredImage> {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
       {
-        folder: "elly-magari/vehicles",
+        folder: "finfix-motors/vehicles",
         resource_type: "image",
         // Keep originals reasonable for web usage
         transformation: [{ width: 1600, height: 1200, crop: "limit", quality: "auto", fetch_format: "auto" }],

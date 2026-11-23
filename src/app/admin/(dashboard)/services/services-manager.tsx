@@ -68,14 +68,14 @@ const ICON_OPTIONS: { value: ServiceIconKey; label: string }[] = [
 function ServiceIcon({ iconKey }: { iconKey: ServiceIconKey }) {
   switch (iconKey) {
     case "ship":
-      return <Ship className="size-5 text-gold" aria-hidden="true" />;
+      return <Ship className="size-5 text-brand" aria-hidden="true" />;
     case "truck":
-      return <Truck className="size-5 text-gold" aria-hidden="true" />;
+      return <Truck className="size-5 text-brand" aria-hidden="true" />;
     case "hand-coins":
-      return <HandCoins className="size-5 text-gold" aria-hidden="true" />;
+      return <HandCoins className="size-5 text-brand" aria-hidden="true" />;
     case "car":
     default:
-      return <Car className="size-5 text-gold" aria-hidden="true" />;
+      return <Car className="size-5 text-brand" aria-hidden="true" />;
   }
 }
 
@@ -207,7 +207,7 @@ export function ServicesManager() {
             <Card key={service.id} className="p-5">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div
-                  className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gold-tint"
+                  className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-tint"
                   aria-hidden="true"
                 >
                   <ServiceIcon iconKey={service.icon} />
@@ -216,7 +216,7 @@ export function ServicesManager() {
                   <div className="flex flex-wrap items-center gap-2">
                     <h2 className="font-medium">{service.title}</h2>
                     {service.isActive ? (
-                      <Badge className="border-transparent bg-gold-tint text-[#8a6f3c]">
+                      <Badge className="border-transparent bg-brand-tint text-brand">
                         Active
                       </Badge>
                     ) : (
@@ -486,7 +486,7 @@ function ServiceDialog({ open, onOpenChange, service, onSaved }: ServiceDialogPr
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-border bg-gold-tint/50 px-4 py-3">
+          <div className="flex items-center justify-between rounded-xl border border-border bg-brand-tint/50 px-4 py-3">
             <Label htmlFor="svc-active" className="font-medium">
               Active
             </Label>

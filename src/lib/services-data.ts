@@ -15,7 +15,7 @@ export const DEFAULT_SERVICES: ServiceContent[] = [
     id: "default-1",
     title: "Buying & Selling Cars",
     description:
-      "Explore a rotating selection of quality vehicles at our Pasiansi yard in Mwanza. Browse, inspect, and drive away in your next car with a team that keeps the process simple and transparent.",
+      "Explore a rotating selection of quality vehicles at our yards in Dar es Salaam and Dodoma. Browse, inspect, and drive away in your next car with a team that keeps the process simple and transparent.",
     icon: "car",
     sortOrder: 1,
     isActive: true,
@@ -24,7 +24,7 @@ export const DEFAULT_SERVICES: ServiceContent[] = [
     id: "default-2",
     title: "Vehicle Importation",
     description:
-      "Tell us the exact car you want and we handle the import process on your behalf — sourcing, shipping and delivery to Mwanza, with updates at every step until your vehicle arrives.",
+      "Tell us the exact car you want and we handle the import process on your behalf — sourcing, shipping and delivery to Dar es Salaam or Dodoma, with updates at every step until your vehicle arrives.",
     icon: "ship",
     sortOrder: 2,
     isActive: true,
@@ -33,7 +33,7 @@ export const DEFAULT_SERVICES: ServiceContent[] = [
     id: "default-3",
     title: "Vehicle Transportation",
     description:
-      "Safe and reliable vehicle transportation across Mwanza and throughout Tanzania. Your vehicle is handled with care and delivered where you need it.",
+      "Safe and reliable vehicle transportation across Dar es Salaam, Dodoma and throughout Tanzania. Your vehicle is handled with care and delivered where you need it.",
     icon: "truck",
     sortOrder: 3,
     isActive: true,

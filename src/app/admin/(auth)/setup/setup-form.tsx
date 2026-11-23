@@ -90,8 +90,8 @@ export function SetupForm() {
         </CardDescription>
       </CardHeader>
       <CardContent className="p-6">
-        <Alert className="mb-5 border-gold/30 bg-gold/10 text-white/80">
-          <AlertTitle className="font-display text-sm font-semibold text-gold">
+        <Alert className="mb-5 border-brand/30 bg-brand/10 text-white/80">
+          <AlertTitle className="font-display text-sm font-semibold text-brand-soft">
             One-time setup
           </AlertTitle>
           <AlertDescription className="text-white/60">
@@ -109,10 +109,10 @@ export function SetupForm() {
               id="setup-name"
               type="text"
               autoComplete="name"
-              placeholder="e.g. Elly Magari"
+              placeholder="e.g. Finfix Motors"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-gold"
+              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-brand-soft"
               disabled={pending}
               aria-invalid={Boolean(fieldErrors.name)}
             />
@@ -129,10 +129,10 @@ export function SetupForm() {
               id="setup-email"
               type="email"
               autoComplete="email"
-              placeholder="you@ellymagari.co.tz"
+              placeholder="admin@finfixmotors.co.tz"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-gold"
+              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-brand-soft"
               disabled={pending}
               aria-invalid={Boolean(fieldErrors.email)}
             />
@@ -152,7 +152,7 @@ export function SetupForm() {
               placeholder="Create a strong password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-gold"
+              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-brand-soft"
               disabled={pending}
               aria-invalid={Boolean(fieldErrors.password)}
             />
@@ -175,7 +175,7 @@ export function SetupForm() {
               placeholder="Repeat the password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-gold"
+              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-brand-soft"
               disabled={pending}
               aria-invalid={Boolean(fieldErrors.confirmPassword)}
             />
@@ -193,7 +193,7 @@ export function SetupForm() {
           <Button
             type="submit"
             disabled={pending}
-            className="h-11 w-full bg-gold font-semibold text-charcoal hover:bg-gold/90 focus-visible:ring-gold"
+            className="h-11 w-full bg-brand font-semibold text-white hover:bg-brand/90 focus-visible:ring-brand-soft"
           >
             {pending ? (
               <>

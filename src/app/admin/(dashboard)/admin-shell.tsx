@@ -79,7 +79,7 @@ export function AdminShell({
             className={cn(
               "flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
               active
-                ? "bg-white/10 text-gold"
+                ? "bg-white/10 text-brand-soft"
                 : "text-white/70 hover:bg-white/5 hover:text-white"
             )}
           >
@@ -94,17 +94,17 @@ export function AdminShell({
   const brandRow = (
     <div className="flex items-center gap-3 border-b border-white/10 px-4 py-4">
       <Image
-        src="/images/elly-magari-logo.jpg"
-        alt="Elly Magari logo"
+        src="/images/finfix-logo.jpg"
+        alt="Finfix Motors logo"
         width={40}
         height={40}
         className="size-10 rounded-lg object-cover"
       />
       <div className="leading-tight">
         <p className="font-display text-sm font-bold tracking-wide text-white">
-          ELLY MAGARI
+          FINFIX MOTORS
         </p>
-        <p className="text-[10px] uppercase tracking-widest text-gold">Admin Panel</p>
+        <p className="text-[10px] uppercase tracking-widest text-brand-soft">Admin Panel</p>
       </div>
     </div>
   );
@@ -113,7 +113,7 @@ export function AdminShell({
     <div className="border-t border-white/10 p-4">
       <div className="mb-3 flex items-center gap-3">
         <div
-          className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gold/15 font-display text-sm font-bold text-gold"
+          className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand/15 font-display text-sm font-bold text-brand-soft"
           aria-hidden="true"
         >
           {session.name.charAt(0).toUpperCase()}
@@ -123,7 +123,7 @@ export function AdminShell({
           <Badge
             className={cn(
               "mt-0.5 border-transparent px-1.5 text-[10px] uppercase tracking-wider",
-              isSuper ? "bg-gold text-charcoal" : "bg-white/10 text-white/70"
+              isSuper ? "bg-brand text-white" : "bg-white/10 text-white/70"
             )}
           >
             {session.role}
@@ -135,7 +135,7 @@ export function AdminShell({
         onClick={handleLogout}
         disabled={loggingOut}
         aria-label="Log out"
-        className="min-h-11 w-full justify-start gap-3 px-3 text-sm text-white/70 hover:bg-white/5 hover:text-white focus-visible:ring-gold"
+        className="min-h-11 w-full justify-start gap-3 px-3 text-sm text-white/70 hover:bg-white/5 hover:text-white focus-visible:ring-brand-soft"
       >
         <LogOut className="size-4" aria-hidden="true" />
         {loggingOut ? "Logging out…" : "Log out"}
@@ -159,16 +159,16 @@ export function AdminShell({
       <header className="sticky top-0 z-40 flex h-14 items-center justify-between bg-charcoal px-4 md:hidden">
         <div className="flex items-center gap-2.5">
           <Image
-            src="/images/elly-magari-logo.jpg"
-            alt="Elly Magari logo"
+            src="/images/finfix-logo.jpg"
+            alt="Finfix Motors logo"
             width={32}
             height={32}
             className="size-8 rounded-md object-cover"
           />
           <span className="font-display text-sm font-bold tracking-wide text-white">
-            ELLY MAGARI
+            FINFIX MOTORS
           </span>
-          <span className="text-[10px] uppercase tracking-widest text-gold">Admin</span>
+          <span className="text-[10px] uppercase tracking-widest text-brand-soft">Admin</span>
         </div>
         <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
           <SheetTrigger asChild>
@@ -176,7 +176,7 @@ export function AdminShell({
               variant="ghost"
               size="icon"
               aria-label="Open navigation menu"
-              className="min-h-11 min-w-11 text-white hover:bg-white/10 hover:text-white focus-visible:ring-gold"
+              className="min-h-11 min-w-11 text-white hover:bg-white/10 hover:text-white focus-visible:ring-brand-soft"
             >
               <Menu className="size-5" aria-hidden="true" />
             </Button>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { getSiteUrl } from "@/lib/site-url";
 
 const headingFont = Sora({
   variable: "--font-heading",
@@ -16,47 +17,59 @@ const bodyFont = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Elly Magari — Car Dealership in Mwanza, Tanzania",
-    template: "%s | Elly Magari",
+    default: "Finfix Motors Limited — Car Dealership in Dar es Salaam & Dodoma, Tanzania",
+    template: "%s | Finfix Motors Limited",
   },
   description:
-    "Elly Magari is a trusted car dealership in Pasiansi, Mwanza, Tanzania. Buy and sell quality vehicles, import cars on order, and get reliable vehicle transportation. Located opposite Lenana Hotel.",
+    "Finfix Motors Limited is a trusted car dealership serving Dar es Salaam and Dodoma, Tanzania. Waagizaji wa magari aina yote — buy and sell quality vehicles, import cars on order, and get reliable vehicle transportation. Exceptional Service, Extraordinary Vehicle.",
   keywords: [
-    "car dealership Mwanza",
+    "car dealership Dar es Salaam",
+    "car dealership Dodoma",
     "cars for sale Tanzania",
-    "magari Mwanza",
-    "buy car Mwanza",
+    "magari Dar es Salaam",
+    "magari Dodoma",
+    "buy car Dar es Salaam",
+    "buy car Dodoma",
     "sell car Tanzania",
     "import car Tanzania",
-    "Elly Magari",
-    "gari Mwanza",
-    "car yard Pasiansi",
+    "Finfix Motors",
+    "Finfix Motors Limited",
+    "gari Tanzania",
+    "waagizaji wa magari",
   ],
-  authors: [{ name: "Elly Magari" }],
+  authors: [{ name: "Finfix Motors Limited" }],
   icons: {
-    icon: "/images/elly-magari-logo.jpg",
-    apple: "/images/elly-magari-logo.jpg",
+    icon: "/images/finfix-icon.png",
+    apple: "/images/finfix-apple-icon.png",
   },
   openGraph: {
-    title: "Elly Magari — Car Dealership in Mwanza, Tanzania",
+    title: "Finfix Motors Limited — Car Dealership in Dar es Salaam & Dodoma, Tanzania",
     description:
-      "Quality Cars. Trusted Service. Buy, sell and import vehicles with Elly Magari — Pasiansi, Mwanza, Tanzania.",
+      "Waagizaji wa Magari Aina Yote. Buy, sell and import vehicles with Finfix Motors Limited — Dar es Salaam & Dodoma, Tanzania. Exceptional Service, Extraordinary Vehicle.",
     url: siteUrl,
-    siteName: "Elly Magari",
+    siteName: "Finfix Motors Limited",
     locale: "en_TZ",
     type: "website",
-    images: [{ url: "/images/hero.jpg", width: 1440, height: 720, alt: "Elly Magari car showroom" }],
+    images: [
+      {
+        url: "/images/og-finfix.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Finfix Motors Limited — Exceptional Service, Extraordinary Vehicle",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elly Magari — Car Dealership in Mwanza, Tanzania",
-    description: "Quality Cars. Trusted Service. Your Journey Starts With Us.",
-    images: ["/images/hero.jpg"],
+    title: "Finfix Motors Limited — Car Dealership in Tanzania",
+    description:
+      "Waagizaji wa Magari Aina Yote — Dar es Salaam & Dodoma. Exceptional Service, Extraordinary Vehicle.",
+    images: ["/images/og-finfix.jpg"],
   },
 };
 

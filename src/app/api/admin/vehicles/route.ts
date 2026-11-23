@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
             publicId: img.publicId ?? null,
             altText:
               img.altText ??
-              `${data.year} ${data.make} ${data.model} available at Elly Magari Mwanza`,
+              `${data.year} ${data.make} ${data.model} available at Finfix Motors Tanzania`,
             sortOrder: index,
           })),
         },

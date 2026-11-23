@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Elly Magari in Pasiansi, Mwanza, Tanzania — call, WhatsApp, visit our yard opposite Lenana Hotel, or send us a message online.",
+    "Contact Finfix Motors in Dar es Salaam and Dodoma, Tanzania — call 0650 090 909 or 0650 050 505, chat on WhatsApp, visit us, or send us a message online.",
 };
 
 type ContactCard = {
@@ -45,7 +45,7 @@ export default async function ContactPage() {
       href: `tel:${settings.phone}`,
       linkText: settings.phone,
       value: settings.phone,
-      sub: "Talk directly with our team during business visits.",
+      sub: "Dar es Salaam: 0650 090 909 · Dodoma: 0650 050 505",
     },
     {
       key: "whatsapp",
@@ -59,21 +59,25 @@ export default async function ContactPage() {
     },
     {
       key: "location",
-      label: "Visit Our Yard",
+      label: "Visit Us",
       icon: MapPin,
       value: settings.address,
-      sub: settings.landmark,
+      sub: "Find us in both cities — message us and we will direct you to the nearest yard.",
     },
-    {
-      key: "instagram",
-      label: "Instagram",
-      icon: Instagram,
-      href: settings.instagram || undefined,
-      external: true,
-      linkText: instagramHandle ? `@${instagramHandle}` : "Follow us on Instagram",
-      value: settings.instagram,
-      sub: "See our latest arrivals and updates.",
-    },
+    ...(settings.instagram
+      ? [
+          {
+            key: "instagram",
+            label: "Instagram" as const,
+            icon: Instagram,
+            href: settings.instagram,
+            external: true,
+            linkText: instagramHandle ? `@${instagramHandle}` : "Follow us on Instagram",
+            value: settings.instagram,
+            sub: "See our latest arrivals and updates.",
+          },
+        ]
+      : []),
   ];
 
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(settings.mapQuery)}`;
@@ -83,8 +87,8 @@ export default async function ContactPage() {
       {/* Compact dark hero band */}
       <section className="bg-charcoal py-12 text-white sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-            Elly Magari
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-soft">
+            Finfix Motors Limited
           </p>
           <h1 className="mt-3 font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl lg:text-5xl">
             Contact Us
@@ -102,7 +106,7 @@ export default async function ContactPage() {
             {cards.map((card) => (
               <article key={card.key} className="h-full">
                 <Card className="h-full p-5 transition-shadow hover:shadow-lg sm:p-6">
-                  <span className="flex size-12 items-center justify-center rounded-xl bg-gold text-charcoal">
+                  <span className="flex size-12 items-center justify-center rounded-xl bg-brand text-white">
                     <card.icon className="size-6" aria-hidden="true" />
                   </span>
                   <h2 className="mt-4 font-display text-base font-bold uppercase tracking-tight">
@@ -114,7 +118,7 @@ export default async function ContactPage() {
                       {...(card.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold underline-offset-2 hover:underline"
+                      className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand underline-offset-2 hover:underline"
                     >
                       {card.linkText}
                     </a>
@@ -162,14 +166,14 @@ export default async function ContactPage() {
                 <iframe
                   src={`https://maps.google.com/maps?q=${encodeURIComponent(settings.mapQuery)}&z=14&output=embed`}
                   className="h-72 w-full border-0"
-                  title="Map — Elly Magari location, Pasiansi Mwanza"
+                  title="Map — Finfix Motors location, Dar es Salaam Tanzania"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
                 <div className="space-y-4 p-5 sm:p-6">
                   <div className="flex items-start gap-3">
                     <MapPin
-                      className="mt-0.5 size-4 shrink-0 text-gold"
+                      className="mt-0.5 size-4 shrink-0 text-brand"
                       aria-hidden="true"
                     />
                     <p className="text-sm leading-relaxed text-muted-foreground">
@@ -179,7 +183,7 @@ export default async function ContactPage() {
                   <Button
                     asChild
                     className="h-11 w-full bg-charcoal text-white hover:bg-charcoal/90"
-                    aria-label="Open directions to Elly Magari in Google Maps"
+                    aria-label="Open directions to Finfix Motors in Google Maps"
                   >
                     <a href={directionsUrl} target="_blank" rel="noopener noreferrer">
                       <Navigation className="size-4" aria-hidden="true" />

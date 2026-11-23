@@ -83,7 +83,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
                   url: img.url,
                   publicId: img.publicId ?? null,
                   altText:
-                    img.altText ?? `${existing.year} ${existing.make} ${existing.model} at Elly Magari Mwanza`,
+                    img.altText ?? `${existing.year} ${existing.make} ${existing.model} at Finfix Motors Tanzania`,
                   sortOrder: index,
                 })),
               },

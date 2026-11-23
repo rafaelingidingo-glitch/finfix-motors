@@ -80,14 +80,14 @@ export function LoginForm() {
     <Card className="mx-auto w-full max-w-md border-white/10 bg-charcoal-soft text-white shadow-2xl">
       <CardHeader className="p-6 pb-0 text-center">
         <Image
-          src="/images/elly-magari-logo.jpg"
-          alt="Elly Magari logo"
+          src="/images/finfix-logo.jpg"
+          alt="Finfix Motors logo"
           width={56}
           height={56}
           className="mx-auto size-14 rounded-lg object-cover"
         />
         <CardTitle className="font-display text-xl font-bold text-white">
-          Elly Magari Admin
+          Finfix Motors Admin
         </CardTitle>
         <CardDescription className="text-white/60">
           Sign in to manage your dealership
@@ -103,10 +103,10 @@ export function LoginForm() {
               id="login-email"
               type="email"
               autoComplete="email"
-              placeholder="you@ellymagari.co.tz"
+              placeholder="admin@finfixmotors.co.tz"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-gold"
+              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-brand-soft"
               disabled={pending}
               aria-invalid={Boolean(error)}
             />
@@ -122,7 +122,7 @@ export function LoginForm() {
               placeholder="Your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-gold"
+              className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/30 focus-visible:border-brand-soft"
               disabled={pending}
               aria-invalid={Boolean(error)}
             />
@@ -137,7 +137,7 @@ export function LoginForm() {
           <Button
             type="submit"
             disabled={pending}
-            className="h-11 w-full bg-gold font-semibold text-charcoal hover:bg-gold/90 focus-visible:ring-gold"
+            className="h-11 w-full bg-brand font-semibold text-white hover:bg-brand/90 focus-visible:ring-brand-soft"
           >
             {pending ? (
               <>
@@ -155,7 +155,7 @@ export function LoginForm() {
             First time?{" "}
             <Link
               href="/admin/setup"
-              className="font-medium text-gold underline-offset-4 hover:underline"
+              className="font-medium text-brand-soft underline-offset-4 hover:underline"
             >
               Set up the admin account
             </Link>

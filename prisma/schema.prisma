@@ -1,4 +1,4 @@
-// ELLY MAGARI — Car Dealership Database Schema
+// FINFIX MOTORS LIMITED — Car Dealership Database Schema
 // Production database: PostgreSQL on Neon. See .env DATABASE_URL.
 
 generator client {
@@ -6,8 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Direct (non-pooled) connection used by the Prisma CLI for migrations / db push.
+  // On Vercel this variable is NOT required — only set it where you run migrations.
+  directUrl = env("DIRECT_URL")
 }
 
 // ---------------------------------------------------------------------------
@@ -96,21 +99,21 @@ model Service {
 // Site settings — single editable row for business info & copy
 // ---------------------------------------------------------------------------
 model SiteSetting {
-  id           String   @id @default("main")
-  businessName String   @default("Elly Magari")
-  tagline      String   @default("Quality Cars. Trusted Service.")
-  phone        String   @default("+255786068760")
-  whatsappNumber String @default("+255786068760")
-  email        String   @default("")
-  address      String   @default("Pasiansi, Mwanza, Tanzania")
-  landmark     String   @default("Opposite Lenana Hotel")
-  instagram    String   @default("https://www.instagram.com/ellymagari")
-  heroTitle    String   @default("FIND YOUR NEXT DREAM CAR.")
-  heroSubtitle String   @default("Quality Cars. Trusted Service. Your Journey Starts With Us.")
-  aboutTitle   String   @default("About Elly Magari")
-  aboutText    String   @default("")
-  mapQuery     String   @default("Pasiansi, Mwanza, Tanzania")
-  updatedAt    DateTime @updatedAt
+  id             String   @id @default("main")
+  businessName   String   @default("Finfix Motors Limited")
+  tagline        String   @default("Exceptional Service, Extraordinary Vehicle.")
+  phone          String   @default("+255650090909")
+  whatsappNumber String   @default("+255650090909")
+  email          String   @default("")
+  address        String   @default("Dar es Salaam & Dodoma, Tanzania")
+  landmark       String   @default("Waagizaji wa Magari Aina Yote")
+  instagram      String   @default("")
+  heroTitle      String   @default("FIND YOUR NEXT DREAM CAR.")
+  heroSubtitle   String   @default("Waagizaji wa Magari Aina Yote — Dar es Salaam & Dodoma.")
+  aboutTitle     String   @default("About Finfix Motors Limited")
+  aboutText      String   @default("")
+  mapQuery       String   @default("Dar es Salaam, Tanzania")
+  updatedAt      DateTime @updatedAt
 }
 
 // ---------------------------------------------------------------------------

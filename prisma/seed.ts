@@ -1,5 +1,5 @@
 /**
- * ELLY MAGARI — Database seed
+ * FINFIX MOTORS LIMITED — Database seed
  *
  * Seeds: site settings (real business info), the four real business services,
  * and SAMPLE inventory listings with placeholder prices so the site can be
@@ -13,7 +13,7 @@ import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 const DEFAULT_ABOUT =
-  "Elly Magari is a car dealership based in Pasiansi, Mwanza, Tanzania. We buy and sell quality vehicles, import cars on customer orders, provide reliable vehicle transportation across the country, and buy vehicles directly from owners. Visit our yard opposite Lenana Hotel — our team is ready to help you find your next car.";
+  "Finfix Motors Limited is a trusted car dealership serving Dar es Salaam and Dodoma, Tanzania. We deal in all types of vehicles — buying and selling quality cars, importing vehicles on customer orders, providing reliable vehicle transportation across the country, and buying vehicles directly from owners. Find us on 0650 090 909 or 0650 050 505 — our team is ready to help you find your next car.";
 
 async function main() {
   console.log("Seeding database...");
@@ -21,22 +21,33 @@ async function main() {
   // ------------------------------------------------------------------ settings
   await db.siteSetting.upsert({
     where: { id: "main" },
-    update: {},
+    update: {
+      businessName: "Finfix Motors Limited",
+      tagline: "Exceptional Service, Extraordinary Vehicle.",
+      phone: "+255650090909",
+      whatsappNumber: "+255650090909",
+      address: "Dar es Salaam & Dodoma, Tanzania",
+      landmark: "Waagizaji wa Magari Aina Yote",
+      heroSubtitle: "Waagizaji wa Magari Aina Yote — Dar es Salaam & Dodoma.",
+      aboutTitle: "About Finfix Motors Limited",
+      aboutText: DEFAULT_ABOUT,
+      mapQuery: "Dar es Salaam, Tanzania",
+    },
     create: {
       id: "main",
-      businessName: "Elly Magari",
-      tagline: "Quality Cars. Trusted Service.",
-      phone: "+255786068760",
-      whatsappNumber: "+255786068760",
+      businessName: "Finfix Motors Limited",
+      tagline: "Exceptional Service, Extraordinary Vehicle.",
+      phone: "+255650090909",
+      whatsappNumber: "+255650090909",
       email: "",
-      address: "Pasiansi, Mwanza, Tanzania",
-      landmark: "Opposite Lenana Hotel",
-      instagram: "https://www.instagram.com/ellymagari",
+      address: "Dar es Salaam & Dodoma, Tanzania",
+      landmark: "Waagizaji wa Magari Aina Yote",
+      instagram: "",
       heroTitle: "FIND YOUR NEXT DREAM CAR.",
-      heroSubtitle: "Discover quality vehicles.",
-      aboutTitle: "About Elly Magari",
+      heroSubtitle: "Waagizaji wa Magari Aina Yote — Dar es Salaam & Dodoma.",
+      aboutTitle: "About Finfix Motors Limited",
       aboutText: DEFAULT_ABOUT,
-      mapQuery: "Pasiansi, Mwanza, Tanzania",
+      mapQuery: "Dar es Salaam, Tanzania",
     },
   });
   console.log("✔ Site settings");
@@ -46,21 +57,21 @@ async function main() {
     {
       title: "Buying & Selling Cars",
       description:
-        "Explore a rotating selection of quality vehicles at our Pasiansi yard in Mwanza. Browse, inspect, and drive away in your next car with a team that keeps the process simple and transparent.",
+        "Explore a rotating selection of quality vehicles at our yards in Dar es Salaam and Dodoma. Browse, inspect, and drive away in your next car with a team that keeps the process simple and transparent.",
       icon: "car",
       sortOrder: 1,
     },
     {
       title: "Vehicle Importation",
       description:
-        "Tell us the exact car you want and we handle the import process on your behalf — sourcing, shipping and delivery to Mwanza, with updates at every step until your vehicle arrives.",
+        "Tell us the exact car you want and we handle the import process on your behalf — sourcing, shipping and delivery to Dar es Salaam or Dodoma, with updates at every step until your vehicle arrives.",
       icon: "ship",
       sortOrder: 2,
     },
     {
       title: "Vehicle Transportation",
       description:
-        "Safe and reliable vehicle transportation across Mwanza and throughout Tanzania. Your vehicle is handled with care and delivered where you need it.",
+        "Safe and reliable vehicle transportation across Dar es Salaam, Dodoma and throughout Tanzania. Your vehicle is handled with care and delivered where you need it.",
       icon: "truck",
       sortOrder: 3,
     },
@@ -93,11 +104,11 @@ async function main() {
       color: "White",
       engine: "2800cc",
       description:
-        "Well-maintained Toyota Land Cruiser Prado TX-L available for viewing at our Pasiansi yard in Mwanza. Famous for its reliability and comfort on Tanzanian roads. Contact us on WhatsApp to confirm current availability and to arrange a visit.",
+        "Well-maintained Toyota Land Cruiser Prado TX-L available for viewing at our yards in Dar es Salaam and Dodoma. Famous for its reliability and comfort on Tanzanian roads. Contact us on WhatsApp to confirm current availability and to arrange a visit.",
       status: "AVAILABLE",
       isFeatured: true,
       image: "/images/cars/prado.jpg",
-      alt: "White Toyota Land Cruiser Prado TX-L 2018 SUV available at Elly Magari Mwanza",
+      alt: "White Toyota Land Cruiser Prado TX-L 2018 SUV available at Finfix Motors Tanzania",
     },
     {
       slug: "toyota-hilux-2020-double-cab",
@@ -112,11 +123,11 @@ async function main() {
       color: "Silver",
       engine: "2400cc",
       description:
-        "Strong and dependable Toyota Hilux Double Cab — ideal for both business and family use. Available for inspection at our yard in Pasiansi, Mwanza. Message us on WhatsApp for the latest price and availability.",
+        "Strong and dependable Toyota Hilux Double Cab — ideal for both business and family use. Available for inspection at our yards in Dar es Salaam and Dodoma. Message us on WhatsApp for the latest price and availability.",
       status: "AVAILABLE",
       isFeatured: true,
       image: "/images/cars/hilux.jpg",
-      alt: "Silver Toyota Hilux Double Cab 2020 pickup available at Elly Magari Mwanza",
+      alt: "Silver Toyota Hilux Double Cab 2020 pickup available at Finfix Motors Tanzania",
     },
     {
       slug: "toyota-corolla-2019-sedan",
@@ -131,11 +142,11 @@ async function main() {
       color: "Silver",
       engine: "1500cc",
       description:
-        "Fuel-efficient Toyota Corolla in clean condition — a perfect everyday sedan. View it at our Pasiansi yard in Mwanza or contact us on WhatsApp to learn more.",
+        "Fuel-efficient Toyota Corolla in clean condition — a perfect everyday sedan. View it at our yards in Dar es Salaam and Dodoma or contact us on WhatsApp to learn more.",
       status: "AVAILABLE",
       isFeatured: true,
       image: "/images/cars/corolla.jpg",
-      alt: "Silver Toyota Corolla 2019 sedan available at Elly Magari Mwanza",
+      alt: "Silver Toyota Corolla 2019 sedan available at Finfix Motors Tanzania",
     },
     {
       slug: "nissan-x-trail-2017-suv",
@@ -150,11 +161,11 @@ async function main() {
       color: "Grey",
       engine: "2000cc",
       description:
-        "Spacious family SUV with a comfortable interior and smooth automatic transmission. Available for viewing in Pasiansi, Mwanza. Contact us to confirm availability.",
+        "Spacious family SUV with a comfortable interior and smooth automatic transmission. Available for viewing in Dar es Salaam and Dodoma. Contact us to confirm availability.",
       status: "AVAILABLE",
       isFeatured: false,
       image: "/images/cars/xtrail.jpg",
-      alt: "Grey Nissan X-Trail 2017 SUV available at Elly Magari Mwanza",
+      alt: "Grey Nissan X-Trail 2017 SUV available at Finfix Motors Tanzania",
     },
     {
       slug: "mazda-cx5-2019-suv",
@@ -169,11 +180,11 @@ async function main() {
       color: "Red",
       engine: "2200cc",
       description:
-        "Stylish Mazda CX-5 with a premium feel, smooth handling and modern features. Visit our yard opposite Lenana Hotel, Pasiansi, Mwanza to see it in person.",
+        "Stylish Mazda CX-5 with a premium feel, smooth handling and modern features. Visit us in Dar es Salaam or Dodoma to see it in person.",
       status: "AVAILABLE",
       isFeatured: false,
       image: "/images/cars/cx5.jpg",
-      alt: "Red Mazda CX-5 2019 SUV available at Elly Magari Mwanza",
+      alt: "Red Mazda CX-5 2019 SUV available at Finfix Motors Tanzania",
     },
     {
       slug: "mercedes-benz-e200-2016-sedan",
@@ -188,11 +199,11 @@ async function main() {
       color: "Black",
       engine: "2000cc",
       description:
-        "Executive luxury sedan with timeless styling and a refined cabin. Available at Elly Magari in Pasiansi, Mwanza — contact us on WhatsApp to arrange a viewing.",
+        "Executive luxury sedan with timeless styling and a refined cabin. Available at Finfix Motors — contact us on WhatsApp to arrange a viewing.",
       status: "AVAILABLE",
       isFeatured: false,
       image: "/images/cars/e200.jpg",
-      alt: "Black Mercedes-Benz E200 2016 sedan available at Elly Magari Mwanza",
+      alt: "Black Mercedes-Benz E200 2016 sedan available at Finfix Motors Tanzania",
     },
     {
       slug: "toyota-harrier-2018-suv",
@@ -211,7 +222,7 @@ async function main() {
       status: "SOLD",
       isFeatured: false,
       image: "/images/cars/harrier.jpg",
-      alt: "Pearl white Toyota Harrier 2018 SUV sold at Elly Magari Mwanza",
+      alt: "Pearl white Toyota Harrier 2018 SUV sold at Finfix Motors Tanzania",
     },
     {
       slug: "honda-fit-2017-hatchback",
@@ -230,7 +241,7 @@ async function main() {
       status: "SOLD",
       isFeatured: false,
       image: "/images/cars/fit.jpg",
-      alt: "Silver Honda Fit 2017 hatchback sold at Elly Magari Mwanza",
+      alt: "Silver Honda Fit 2017 hatchback sold at Finfix Motors Tanzania",
     },
   ];
 

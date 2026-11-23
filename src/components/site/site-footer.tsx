@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, MapPin, Phone } from "lucide-react";
+import { Instagram, MapPin } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/whatsapp";
 import { generalWhatsAppUrl } from "@/lib/whatsapp";
 import type { SiteSettings } from "@/lib/settings";
@@ -20,6 +20,12 @@ const SERVICE_LINKS = [
   { href: "/services", label: "We Buy Your Car" },
 ];
 
+/** Real branch contacts — Finfix Motors serves two regions. */
+const BRANCHES = [
+  { city: "Dar es Salaam", phoneDisplay: "0650 090 909", tel: "+255650090909" },
+  { city: "Dodoma", phoneDisplay: "0650 050 505", tel: "+255650050505" },
+];
+
 /** Site footer — sticks to the bottom via flex layout in the shell. */
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
   const year = new Date().getFullYear();
@@ -32,7 +38,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Image
-                src="/images/elly-magari-logo.jpg"
+                src="/images/finfix-logo.jpg"
                 alt={`${settings.businessName} logo`}
                 width={48}
                 height={48}
@@ -43,15 +49,15 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-white/70">
-              {settings.address} — {settings.landmark}. Buying and selling quality vehicles,
-              importing cars on customer orders, and reliable vehicle transportation across
-              Tanzania.
+              Waagizaji wa Magari Aina Yote — {settings.address}. Buying and selling quality
+              vehicles, importing cars on customer orders, and reliable vehicle transportation
+              across Tanzania. Exceptional Service, Extraordinary Vehicle.
             </p>
           </div>
 
           {/* Quick links */}
           <nav aria-label="Footer navigation">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-brand-soft">
               Quick Links
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -59,7 +65,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    className="transition-colors hover:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft"
                   >
                     {link.label}
                   </Link>
@@ -70,7 +76,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
 
           {/* Services */}
           <div>
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-brand-soft">
               Our Services
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -78,7 +84,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                    className="transition-colors hover:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft"
                   >
                     {link.label}
                   </Link>
@@ -89,48 +95,46 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-gold">
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-brand-soft">
               Contact Us
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <a
-                  href={`tel:${settings.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-3 transition-colors hover:text-gold"
-                >
-                  <Phone className="size-4 shrink-0 text-gold" aria-hidden="true" />
-                  {settings.phone}
-                </a>
-              </li>
-              <li>
-                <a
                   href={generalWhatsAppUrl(settings.whatsappNumber)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 transition-colors hover:text-gold"
+                  className="flex items-center gap-3 transition-colors hover:text-brand-soft"
                 >
-                  <WhatsAppIcon className="size-4 shrink-0 text-gold" />
+                  <WhatsAppIcon className="size-4 shrink-0 text-brand-soft" />
                   WhatsApp: {settings.whatsappNumber}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden="true" />
-                <span>
-                  {settings.address}
-                  <br />
-                  <span className="text-white/60">{settings.landmark}</span>
-                </span>
-              </li>
+              {BRANCHES.map((branch) => (
+                <li key={branch.city}>
+                  <a
+                    href={`tel:${branch.tel}`}
+                    className="flex items-center gap-3 transition-colors hover:text-brand-soft"
+                  >
+                    <MapPin className="size-4 shrink-0 text-brand-soft" aria-hidden="true" />
+                    <span>
+                      {branch.city}
+                      <br />
+                      <span className="text-white/80">{branch.phoneDisplay}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
               {settings.instagram && (
                 <li>
                   <a
                     href={settings.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 transition-colors hover:text-gold"
+                    className="flex items-center gap-3 transition-colors hover:text-brand-soft"
                   >
-                    <Instagram className="size-4 shrink-0 text-gold" aria-hidden="true" />
-                    Instagram: Elly Magari
+                    <Instagram className="size-4 shrink-0 text-brand-soft" aria-hidden="true" />
+                    Instagram
                   </a>
                 </li>
               )}
@@ -143,7 +147,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             © {year} {settings.businessName}. All rights reserved.
           </p>
           <p>
-            Car dealership in {settings.address} — {settings.landmark}.
+            Waagizaji wa Magari Aina Yote — {settings.address}.
           </p>
         </div>
       </div>

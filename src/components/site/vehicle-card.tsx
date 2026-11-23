@@ -19,7 +19,7 @@ export function VehicleCard({ vehicle, whatsappNumber, className }: VehicleCardP
   const mainImage = vehicle.images[0]?.url;
   const altText =
     vehicle.images[0]?.altText ??
-    `${vehicle.year} ${vehicle.make} ${vehicle.model} at Elly Magari Mwanza`;
+    `${vehicle.year} ${vehicle.make} ${vehicle.model} at Finfix Motors Tanzania`;
   const isSold = vehicle.status === "SOLD";
 
   return (
@@ -32,7 +32,7 @@ export function VehicleCard({ vehicle, whatsappNumber, className }: VehicleCardP
       {/* Image */}
       <Link
         href={`/vehicles/${vehicle.slug}`}
-        className="relative block aspect-[4/3] overflow-hidden bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+        className="relative block aspect-[4/3] overflow-hidden bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
         aria-label={`View details of ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
       >
         {mainImage ? (
@@ -56,7 +56,7 @@ export function VehicleCard({ vehicle, whatsappNumber, className }: VehicleCardP
         <Badge
           className={cn(
             "absolute left-3 top-3 border-none px-3 py-1 text-xs font-semibold uppercase tracking-wide",
-            isSold ? "bg-charcoal text-white" : "bg-gold text-charcoal"
+            isSold ? "bg-charcoal text-white" : "bg-brand text-white"
           )}
         >
           {isSold ? "Sold" : "Available"}
@@ -84,12 +84,12 @@ export function VehicleCard({ vehicle, whatsappNumber, className }: VehicleCardP
           <h3 className="font-display text-base font-bold leading-snug text-foreground sm:text-lg">
             <Link
               href={`/vehicles/${vehicle.slug}`}
-              className="transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+              className="transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               {vehicle.year} {vehicle.make} {vehicle.model}
             </Link>
           </h3>
-          <p className="mt-1.5 font-display text-lg font-bold text-gold sm:text-xl">
+          <p className="mt-1.5 font-display text-lg font-bold text-brand sm:text-xl">
             {formatTZSShort(vehicle.price)}
           </p>
         </div>
@@ -97,19 +97,19 @@ export function VehicleCard({ vehicle, whatsappNumber, className }: VehicleCardP
         {/* Quick specs */}
         <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <Calendar className="size-3.5 text-gold" aria-hidden="true" />
+            <Calendar className="size-3.5 text-brand" aria-hidden="true" />
             {vehicle.year}
           </span>
           <span className="flex items-center gap-1.5">
-            <Settings2 className="size-3.5 text-gold" aria-hidden="true" />
+            <Settings2 className="size-3.5 text-brand" aria-hidden="true" />
             {vehicle.transmission}
           </span>
           <span className="flex items-center gap-1.5">
-            <Fuel className="size-3.5 text-gold" aria-hidden="true" />
+            <Fuel className="size-3.5 text-brand" aria-hidden="true" />
             {vehicle.fuelType}
           </span>
           <span className="flex items-center gap-1.5">
-            <Gauge className="size-3.5 text-gold" aria-hidden="true" />
+            <Gauge className="size-3.5 text-brand" aria-hidden="true" />
             {vehicle.mileage != null ? `${new Intl.NumberFormat("en-US").format(vehicle.mileage)} km` : "—"}
           </span>
         </div>

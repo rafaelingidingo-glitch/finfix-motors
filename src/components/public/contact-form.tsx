@@ -185,7 +185,7 @@ export function ContactForm({ whatsappNumber }: ContactFormProps) {
           type="submit"
           disabled={isSubmitting}
           className="h-11 w-full bg-charcoal text-white hover:bg-charcoal/90 sm:w-auto sm:px-8"
-          aria-label="Send message to Elly Magari"
+          aria-label="Send message to Finfix Motors"
         >
           {isSubmitting ? (
             <>
@@ -202,7 +202,7 @@ export function ContactForm({ whatsappNumber }: ContactFormProps) {
             href={generalWhatsAppUrl(whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 font-medium text-gold underline-offset-2 hover:underline"
+            className="inline-flex items-center gap-1 font-medium text-brand underline-offset-2 hover:underline"
           >
             <WhatsAppIcon className="size-3.5" aria-hidden="true" />
             WhatsApp us instead

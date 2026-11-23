@@ -230,7 +230,7 @@ export function InquiriesManager() {
                         className={cn(
                           "border-transparent",
                           inquiry.status === "NEW"
-                            ? "bg-gold text-charcoal"
+                            ? "bg-brand text-white"
                             : "bg-muted text-muted-foreground"
                         )}
                       >
@@ -245,7 +245,7 @@ export function InquiriesManager() {
                     </p>
                     <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                       <span className="inline-flex items-center gap-1.5">
-                        <Phone className="size-3.5 text-gold" aria-hidden="true" />
+                        <Phone className="size-3.5 text-brand" aria-hidden="true" />
                         {inquiry.phone}
                       </span>
                       {inquiry.email ? (
@@ -358,7 +358,7 @@ export function InquiriesManager() {
               <div className="space-y-4">
                 <div className="grid gap-2 text-sm">
                   <p className="flex items-center gap-2">
-                    <Phone className="size-4 text-gold" aria-hidden="true" />
+                    <Phone className="size-4 text-brand" aria-hidden="true" />
                     <a href={`tel:${viewTarget.phone}`} className="underline-offset-4 hover:underline">
                       {viewTarget.phone}
                     </a>
@@ -368,9 +368,9 @@ export function InquiriesManager() {
                   ) : null}
                 </div>
                 {viewTarget.vehicle ? (
-                  <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-gold-tint/50 px-3 py-2.5">
+                  <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-brand-tint/50 px-3 py-2.5">
                     <span className="flex min-w-0 items-center gap-2 text-sm">
-                      <Car className="size-4 shrink-0 text-gold" aria-hidden="true" />
+                      <Car className="size-4 shrink-0 text-brand" aria-hidden="true" />
                       <span className="truncate">
                         About: {viewTarget.vehicle.year} {viewTarget.vehicle.make}{" "}
                         {viewTarget.vehicle.model}
@@ -380,7 +380,7 @@ export function InquiriesManager() {
                       href={`/vehicles/${viewTarget.vehicle.slug}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-gold underline-offset-4 hover:underline"
+                      className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-brand underline-offset-4 hover:underline"
                     >
                       View vehicle
                       <ExternalLink className="size-3.5" aria-hidden="true" />

@@ -13,7 +13,7 @@ export function ContactBar({ settings }: { settings: SiteSettings }) {
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-5 gap-y-1 px-4 py-2 text-xs sm:justify-between sm:px-6 lg:px-8">
         {/* Location (desktop only) */}
         <p className="hidden items-center gap-1.5 sm:flex">
-          <MapPin className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+          <MapPin className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
           {settings.address} — {settings.landmark}
         </p>
 
@@ -21,10 +21,10 @@ export function ContactBar({ settings }: { settings: SiteSettings }) {
         <div className="flex items-center gap-x-5 sm:gap-x-6">
           <a
             href={`tel:${settings.phone.replace(/\s/g, "")}`}
-            className="flex items-center gap-1.5 font-medium transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex items-center gap-1.5 font-medium transition-colors hover:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft"
             aria-label={`Call ${settings.businessName} at ${settings.phone}`}
           >
-            <Phone className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+            <Phone className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
             {settings.phone}
           </a>
 
@@ -32,10 +32,10 @@ export function ContactBar({ settings }: { settings: SiteSettings }) {
             href={generalWhatsAppUrl(settings.whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-medium transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="flex items-center gap-1.5 font-medium transition-colors hover:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft"
             aria-label={`WhatsApp ${settings.businessName}`}
           >
-            <WhatsAppIcon className="size-3.5 shrink-0 text-gold" />
+            <WhatsAppIcon className="size-3.5 shrink-0 text-brand-soft" />
             WhatsApp
           </a>
 
@@ -44,10 +44,10 @@ export function ContactBar({ settings }: { settings: SiteSettings }) {
               href={settings.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center gap-1.5 font-medium transition-colors hover:text-gold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold md:flex"
+              className="hidden items-center gap-1.5 font-medium transition-colors hover:text-brand-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-soft md:flex"
               aria-label={`${settings.businessName} on Instagram`}
             >
-              <Instagram className="size-3.5 shrink-0 text-gold" aria-hidden="true" />
+              <Instagram className="size-3.5 shrink-0 text-brand-soft" aria-hidden="true" />
               Instagram
             </a>
           )}

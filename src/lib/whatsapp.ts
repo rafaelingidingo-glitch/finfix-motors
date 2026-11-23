@@ -2,7 +2,7 @@ import { formatTZS, toWaDigits } from "@/lib/format";
 
 /**
  * WhatsApp link helpers.
- * Business number: +255 786 068 760 (managed via site settings).
+ * Business numbers: 0650 090 909 / 0650 050 505 (managed via site settings).
  */
 
 export function buildWhatsAppUrl(number: string, message: string): string {
@@ -10,7 +10,7 @@ export function buildWhatsAppUrl(number: string, message: string): string {
 }
 
 export const GENERAL_INQUIRY_MESSAGE =
-  "Hello Elly Magari! I would like to inquire about your vehicles and services.";
+  "Hello Finfix Motors! I would like to inquire about your vehicles and services.";
 
 export function generalWhatsAppUrl(number: string): string {
   return buildWhatsAppUrl(number, GENERAL_INQUIRY_MESSAGE);
@@ -26,7 +26,7 @@ export function vehicleInquiryMessage(opts: {
   url?: string;
 }): string {
   const lines = [
-    "Hello Elly Magari! I am interested in this vehicle:",
+    "Hello Finfix Motors! I am interested in this vehicle:",
     "",
     `*${opts.year} ${opts.make} ${opts.model}*`,
     `Price: ${formatTZS(opts.price)}`,

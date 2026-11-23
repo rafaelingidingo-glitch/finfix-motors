@@ -1,26 +1,28 @@
-# ELLY MAGARI — Premium Car Dealership Website
+# FINFIX MOTORS LIMITED — Premium Car Dealership Website
 
-Production-ready car dealership website for **Elly Magari** (Pasiansi, Mwanza, Tanzania).
+Production-ready car dealership website for **Finfix Motors Limited**
+(Dar es Salaam & Dodoma, Tanzania — *Waagizaji wa Magari Aina Yote*).
 
-Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, shadcn/ui, Prisma ORM and Cloudinary.
+Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, shadcn/ui, Prisma ORM and Neon PostgreSQL. **Vercel-ready out of the box.**
 
 ## Features
 
 ### Public website
-- **Homepage** — hero, trust bar, featured vehicles, services, why-choose, recently added, CTA
-- **Vehicle inventory** (`/inventory`) — search, filters (make, price range, year, transmission, fuel type, availability), sorting (newest / price asc / price desc), load-more pagination, empty state
-- **Vehicle details** (`/vehicles/[slug]`) — image gallery, full specs, description, availability badge, WhatsApp inquiry with vehicle name + link, related vehicles, Vehicle JSON-LD
+- **Homepage** — animated vehicle showcase hero, trust bar, featured vehicles, services, why-choose, recently added, CTA
+- **Vehicle inventory** (`/inventory`) — search, filters (make, price range, year, transmission, fuel type, availability), sorting, load-more pagination
+- **Vehicle details** (`/vehicles/[slug]`) — image gallery, full specs, availability badge, WhatsApp inquiry with vehicle name + link, related vehicles, Vehicle JSON-LD
 - **Services** (`/services`), **About** (`/about`), **Contact** (`/contact`) — map embed, directions link, validated inquiry form (stored in DB, viewable in admin)
-- **WhatsApp integration** — floating button, header button, per-vehicle inquiry links (all deep links to `wa.me/255786068760` with pre-encoded messages)
-- **SEO** — dynamic metadata + Open Graph, `sitemap.xml`, `robots.txt`, AutoDealer + Vehicle structured data, semantic HTML, optimized images
+- **WhatsApp integration** — floating button, header button, per-vehicle inquiry links
+- **SEO** — dynamic metadata + Open Graph (branded OG image), `sitemap.xml`, `robots.txt`, AutoDealer + Vehicle structured data (two-branch addresses), semantic HTML
+- **Resilience** — public pages render graceful empty states during transient DB outages (e.g. Neon compute waking from auto-suspend)
 
 ### Admin dashboard (`/admin`)
-- Secure login (bcrypt password hashing, JWT httpOnly cookie session), one-time **setup flow** for the first SUPERADMIN
-- Route protection via middleware **and** per-request server-side auth checks
-- Rate limiting on login, setup and inquiry endpoints; same-origin checks on all mutations
+- Secure login (bcrypt password hashing, JWT httpOnly cookie session)
+- Route protection via `src/proxy.ts` **and** per-request server-side auth checks
+- Rate limiting on login/inquiry endpoints; same-origin checks on all mutations
 - Dashboard overview (total / available / sold / featured vehicles, new inquiries, recently added)
 - Vehicle management — create, edit, delete (with storage cleanup), multi-image upload with previews + reorder + "main photo", featured toggle, sold/available status
-- Services management (content of the Services section, admin-editable)
+- Services management (admin-editable service content)
 - Site settings management (contact info, hero copy, about text, map query, Instagram)
 - Inquiry inbox (new/read status, delete, vehicle link)
 
@@ -28,13 +30,13 @@ Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, shadcn/ui, Prism
 
 | Layer | Technology |
 | --- | --- |
-| Framework | Next.js 16 (App Router, standalone output) |
+| Framework | Next.js 16 (App Router) |
 | Language | TypeScript (strict) |
 | UI | Tailwind CSS 4 + shadcn/ui (New York) + Lucide icons |
-| Database | Prisma ORM — SQLite in this sandbox, PostgreSQL/Neon in production |
+| Database | Prisma ORM + PostgreSQL (Neon) |
 | Auth | bcryptjs + JWT (jose) in httpOnly cookie |
 | Images | Cloudinary (server-side upload), local `public/uploads` fallback for dev |
-| Deployment | Vercel |
+| Deployment | Vercel (free Hobby plan compatible) |
 
 ---
 
@@ -43,122 +45,90 @@ Built with Next.js 16 (App Router), TypeScript, Tailwind CSS 4, shadcn/ui, Prism
 Copy `.env.example` to `.env` and fill in the values:
 
 ```bash
-# Database
-DATABASE_URL="postgresql://USER:PASSWORD@ep-xxx-pooler.<region>.aws.neon.tech/neondb?sslmode=require"
+# Database (Neon pooled connection string)
+DATABASE_URL="postgresql://USER:PASSWORD@ep-xxxx-pooler.<region>.aws.neon.tech/neondb?sslmode=require"
 
-# Security — REQUIRED in production. Generate: openssl rand -hex 32
-SESSION_SECRET="<64-char random hex>"
+# Optional: direct (non-pooled) URL — only used by Prisma CLI migrations locally
+DIRECT_URL="postgresql://USER:PASSWORD@ep-xxxx.<region>.aws.neon.tech/neondb?sslmode=require"
 
-# Public site URL (SEO, sitemap, OG images, WhatsApp message links)
+# Security — REQUIRED in production. Generate: openssl rand -base64 48
+SESSION_SECRET="<random 64+ char string>"
+
+# Public site URL (optional on Vercel — auto-falls back to the project domain)
 NEXT_PUBLIC_SITE_URL="https://your-domain.com"
 
-# Cloudinary (vehicle image storage)
+# Cloudinary (vehicle image storage) — REQUIRED on Vercel
 CLOUDINARY_CLOUD_NAME="your-cloud-name"
 CLOUDINARY_API_KEY="1234567890"
 CLOUDINARY_API_SECRET="your-api-secret"
 ```
 
-> Secrets are only ever read server-side (`process.env` in server components / route
-> handlers / middleware). Nothing is exposed to the browser except
-> `NEXT_PUBLIC_SITE_URL`.
+> Secrets are only ever read server-side. Nothing is exposed to the browser except `NEXT_PUBLIC_SITE_URL`.
 
-## 2. Database — PostgreSQL with Neon
+## 2. Deploy to Vercel (free)
 
-This project develops against SQLite (sandbox). For production:
+1. **Push this repository to GitHub.**
 
-1. Create a database at [neon.tech](https://neon.tech) and copy the **pooled** connection string.
-2. Switch the Prisma datasource provider in `prisma/schema.prisma`:
+2. **Import the project on [vercel.com](https://vercel.com)** (free Hobby plan works perfectly).
 
-   ```prisma
-   datasource db {
-     provider = "postgresql"
-     url      = env("DATABASE_URL")
-   }
-   ```
+3. **Add environment variables** in *Settings → Environment Variables* (Production + Preview):
 
-3. Create the schema (migration):
+   | Variable | Value |
+   | --- | --- |
+   | `DATABASE_URL` | Neon **pooled** connection string (with `sslmode=require`) |
+   | `SESSION_SECRET` | Same strong secret as local (keep it stable) |
+   | `NEXT_PUBLIC_SITE_URL` | Your domain (optional — falls back to `*.vercel.app`) |
+   | `CLOUDINARY_CLOUD_NAME` / `CLOUDINARY_API_KEY` / `CLOUDINARY_API_SECRET` | Cloudinary credentials (required for image uploads) |
 
-   ```bash
-   npx prisma migrate dev --name init     # local/dev
-   # or in CI/production:
-   npx prisma migrate deploy
-   ```
+   > `DIRECT_URL` is **not** needed on Vercel — it is only used when running migrations locally.
 
-4. (Optional) Seed default services + settings + placeholder inventory:
+4. **Deploy.** The build runs `prisma generate` (postinstall + build hook) automatically. No extra build settings are required — `next.config.ts` is already Vercel-compatible.
+
+5. **Create the database schema** (first deployment only). Run locally against the same Neon database:
 
    ```bash
-   bun prisma/seed.ts        # or: npx tsx prisma/seed.ts
+   bun run db:push      # creates/updates tables on Neon
+   bun run db:seed      # optional: seeds services, site settings + sample vehicles
    ```
 
-   The app also works without seeding — services and site settings fall back to
-   sensible defaults, and the admin can add all content from the dashboard.
+   Or, to rebrand/re-sync an **existing** database:
+
+   ```bash
+   bun scripts/rebrand-finfix.ts   # applies Finfix settings/services/vehicles/admin
+   ```
+
+6. **First admin.** If the database has no admin yet, visit `/admin` → you are redirected to `/admin/setup` (one-time; locks itself afterwards).
+
+### Deployment verification checklist
+- [ ] `/` renders hero + featured vehicles (DB seeded)
+- [ ] `/api/vehicles` returns JSON
+- [ ] Image upload returns a Cloudinary URL (admin → add vehicle)
+- [ ] WhatsApp buttons open `wa.me/255650090909` with prefilled text
+- [ ] `/sitemap.xml` and `/robots.txt` respond
+- [ ] Contact form submission appears in Admin → Inquiries
 
 ## 3. Cloudinary configuration
 
-1. Create a free Cloudinary account and open **Dashboard → API Keys**.
-2. Put the cloud name / API key / API secret into the environment variables above.
-3. Vehicle images upload server-side to the `elly-magari/vehicles` folder with
-   automatic 1600px/`auto` quality transformation.
-4. Uploads are validated server-side: JPG/PNG/WebP only, max 5 MB, max 6 files
-   per request, max 12 images per vehicle. Old images are deleted from Cloudinary
-   when removed from a vehicle or when the vehicle is deleted.
-5. If Cloudinary env vars are **not** set, uploads fall back to local
-   `public/uploads` storage — convenient for local development, **not** persisted
-   on Vercel (serverless). Always configure Cloudinary in production.
+1. Create a free Cloudinary account → *Dashboard → API Keys*.
+2. Put the cloud name / API key / API secret into the environment variables.
+3. Vehicle images upload server-side to the `finfix-motors/vehicles` folder with automatic 1600px / auto-quality transformation.
+4. Uploads are validated server-side: JPG/PNG/WebP only, max 4 MB, max 6 files per request, max 12 images per vehicle. Old images are deleted from Cloudinary when removed from a vehicle or when the vehicle is deleted.
+5. If Cloudinary env vars are **not** set, uploads fall back to local `public/uploads` storage — convenient for local development, **not persisted on Vercel** (serverless filesystem is read-only and the app returns a clear configuration error). Always configure Cloudinary in production.
 
-## 4. Secure admin initialization
+## 4. Security notes
 
-There are **no hardcoded admin credentials**. The first admin is created through
-a one-time setup flow:
-
-1. Deploy the site (with an empty `AdminUser` table).
-2. Visit `https://your-domain.com/admin` — you are redirected to `/admin/setup`.
-3. Create the first account (name, email, strong password). It gets the
-   **SUPERADMIN** role.
-4. The setup endpoint immediately disables itself once any admin exists
-   (`409 Setup is already complete`). Additional admins would be `ADMIN` role
-   (services/settings management restricted to SUPERADMIN by role checks).
-5. Keep `SESSION_SECRET` stable across deployments, otherwise sessions are
-   invalidated on each deploy.
-
-**Sandbox note:** a demo SUPERADMIN already exists in this preview database:
-`admin@ellymagari.co.tz` / `SecurePass123` — replace the password (or delete the
-row) before going live.
-
-## 5. Build & deployment (Vercel)
-
-```bash
-# 1. Push the schema to Neon (with provider switched to postgresql)
-npx prisma migrate deploy
-
-# 2. Verify the production build compiles
-npm run build          # (repo also supports: bun run build)
-
-# 3. Deploy to Vercel
-vercel --prod
-```
-
-In Vercel **Settings → Environment Variables** add all variables from step 1
-(Production + Preview). In **Settings → Build & Output Settings** keep the
-default Next.js build; Prisma runs `prisma generate` automatically via the
-postinstall hook.
-
-### Deployment verification checklist
-- [ ] `/` renders with hero image (Cloudinary/`hero.jpg` present)
-- [ ] `/api/vehicles` returns JSON
-- [ ] `/admin/setup` reachable **only** while no admin exists
-- [ ] Login works, vehicle create/edit/delete works
-- [ ] Image upload returns a Cloudinary URL
-- [ ] WhatsApp buttons open `wa.me/255786068760` with prefilled text
-- [ ] `/sitemap.xml` and `/robots.txt` respond
-- [ ] Contact form submission appears in Admin → Inquiries
+- **No hardcoded admin credentials.** The first admin is created through a one-time setup flow (`/admin/setup`) that permanently locks itself once any admin exists.
+- JWT session cookie: `HttpOnly`, `SameSite=Lax`, `Secure` in production, 7-day expiry.
+- Login rate limiting: 8 attempts / 15 min / IP (in-memory — per serverless instance; acceptable for low traffic. For strict global limits add Upstash Redis later).
+- Same-origin (Origin header) checks on all mutating API routes.
+- `SESSION_SECRET` must stay stable across deployments, otherwise sessions are invalidated on each deploy.
 
 ## Local development
 
 ```bash
 bun install
-bun run db:push       # sync SQLite schema (sandbox)
-bun prisma/seed.ts    # optional demo data
+bun run db:push       # sync schema to Neon (uses DIRECT_URL when set)
+bun run db:seed       # optional demo data
 bun run dev           # http://localhost:3000
 bun run lint          # ESLint
 ```
@@ -167,32 +137,31 @@ bun run lint          # ESLint
 
 ```
 prisma/                 schema.prisma, seed.ts
-db/                     SQLite database (sandbox only)
 src/app/
-  page.tsx              Homepage
+  layout.tsx            metadata + fonts
+  page.tsx              Homepage (hero carousel, featured, services, why-choose, CTA)
   (site)/               inventory, vehicles/[slug], services, about, contact
   admin/(auth)/         login, one-time setup
   admin/(dashboard)/    dashboard, vehicles CRUD, inquiries, services, settings
   api/                  vehicles (public), inquiries (public), admin/** (guarded)
   sitemap.ts robots.ts
 src/components/
-  site/                 header, footer, shell, vehicle card, WhatsApp helpers
-  public/               inventory client, gallery, contact form
+  site/                 header, footer, contact bar, hero carousel, vehicle card
+  public/               inventory client, gallery, contact form, final CTA
   admin/                admin shell, managers, forms
   ui/                   shadcn/ui primitives
 src/lib/                db, auth (jwt/session), cloudinary, validators, rate-limit,
-                        whatsapp, format, settings, services-data, vehicles
-src/middleware.ts       admin route protection (edge, jose)
+                        whatsapp, format, settings, services-data, vehicles, site-url
+src/proxy.ts            admin route protection (edge, jose)
+scripts/                generate-brand-assets.ts, rebrand-finfix.ts
 ```
 
 ## Business information
 
-- **Elly Magari** — Car dealership
-- Location: Pasiansi, Mwanza, Tanzania (opposite Lenana Hotel)
-- Phone / WhatsApp: +255 786 068 760
-- Instagram: Elly Magari
-- Services: buying & selling vehicles, vehicle importation on order, vehicle
-  transportation, buying vehicles directly from customers
+- **Finfix Motors Limited** — *Waagizaji wa Magari Aina Yote* (we deal in all types of vehicles)
+- Locations: **Dar es Salaam** (0650 090 909) and **Dodoma** (0650 050 505), Tanzania
+- Services: buying & selling vehicles, vehicle importation on order, vehicle transportation, buying vehicles directly from customers
+- Tagline: *Exceptional Service, Extraordinary Vehicle*
 
-> All inventory entries in this build are **sample placeholders** with
-> placeholder prices — replace them with real stock from the admin dashboard.
+> Inventory entries shipped with the seed are **sample placeholders** — replace them
+> with real stock from the admin dashboard.

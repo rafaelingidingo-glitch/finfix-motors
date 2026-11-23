@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Vehicle buying and selling, importation on order, reliable transportation across Tanzania and instant car buying — Elly Magari, Pasiansi, Mwanza.",
+    "Vehicle buying and selling, importation on order, reliable transportation across Tanzania and instant car buying — Finfix Motors Limited, Dar es Salaam & Dodoma.",
 };
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
@@ -53,7 +53,7 @@ export default async function ServicesPage() {
               </BreadcrumbItem>
               <BreadcrumbSeparator className="[&>svg]:text-white/50" />
               <BreadcrumbItem>
-                <BreadcrumbPage className="text-gold">Our Services</BreadcrumbPage>
+                <BreadcrumbPage className="text-brand-soft">Our Services</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -72,18 +72,18 @@ export default async function ServicesPage() {
         const isEvenRow = index % 2 === 0;
         const content = (
           <div>
-            <span className="flex size-16 items-center justify-center rounded-2xl bg-charcoal text-gold">
+            <span className="flex size-16 items-center justify-center rounded-2xl bg-charcoal text-brand-soft">
               <Icon className="size-8" aria-hidden="true" />
             </span>
             <h2 className="mt-6 font-display text-2xl font-bold uppercase tracking-tight sm:text-3xl">
               {service.title}
             </h2>
-            <div className="mt-4 h-0.5 w-14 rounded-full bg-gold" aria-hidden="true" />
+            <div className="mt-4 h-0.5 w-14 rounded-full bg-brand" aria-hidden="true" />
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
               {service.description}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="h-11 bg-gold text-charcoal hover:bg-gold/90">
+              <Button asChild className="h-11 bg-brand text-white hover:bg-brand/90">
                 <Link href="/contact">Contact Us</Link>
               </Button>
               <Button
@@ -106,17 +106,17 @@ export default async function ServicesPage() {
         );
         const decorative = (
           <div
-            className="relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-gold/30 bg-gold-tint p-8"
+            className="relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-brand-tint p-8"
             aria-hidden="true"
           >
-            <span className="font-display text-6xl font-extrabold leading-none text-gold sm:text-7xl">
+            <span className="font-display text-6xl font-extrabold leading-none text-brand sm:text-7xl">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="mt-8 flex size-20 items-center justify-center rounded-2xl bg-charcoal text-gold shadow-lg">
+            <span className="mt-8 flex size-20 items-center justify-center rounded-2xl bg-charcoal text-brand-soft shadow-lg">
               <Icon className="size-10" />
             </span>
-            <span className="absolute -right-10 -top-10 size-40 rounded-full border border-gold/25" />
-            <span className="absolute -bottom-12 -left-8 size-32 rounded-full border border-gold/25" />
+            <span className="absolute -right-10 -top-10 size-40 rounded-full border border-brand/25" />
+            <span className="absolute -bottom-12 -left-8 size-32 rounded-full border border-brand/25" />
           </div>
         );
 

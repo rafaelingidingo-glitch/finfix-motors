@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? raw.length > 160
         ? `${raw.slice(0, 157)}...`
         : raw
-      : "View this vehicle at Elly Magari, Mwanza, Tanzania.";
+      : "View this vehicle at Finfix Motors, Tanzania.";
 
   const mainImage = vehicle.images[0];
 
@@ -165,7 +165,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
               </BreadcrumbItem>
               <BreadcrumbSeparator className="[&>svg]:text-white/50" />
               <BreadcrumbItem>
-                <BreadcrumbPage className="text-gold">{vehicleTitle}</BreadcrumbPage>
+                <BreadcrumbPage className="text-brand-soft">{vehicleTitle}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -196,14 +196,14 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                   <Badge
                     className={cn(
                       "mt-1 shrink-0 border-none px-3 py-1 text-xs font-semibold uppercase tracking-wide",
-                      isSold ? "bg-charcoal text-white" : "bg-gold text-charcoal"
+                      isSold ? "bg-charcoal text-white" : "bg-brand text-white"
                     )}
                   >
                     {isSold ? "Sold" : "Available"}
                   </Badge>
                 </div>
 
-                <p className="mt-2 font-display text-2xl font-bold text-gold sm:text-3xl">
+                <p className="mt-2 font-display text-2xl font-bold text-brand sm:text-3xl">
                   {formatTZS(vehicle.price)}
                 </p>
 
@@ -211,7 +211,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   {quickSpecs.map((spec) => (
                     <div key={spec.label} className="flex items-start gap-3">
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold-tint text-gold">
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand">
                         <spec.icon className="size-4" aria-hidden="true" />
                       </span>
                       <div className="min-w-0">
@@ -256,7 +256,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                     asChild
                     variant="outline"
                     className="h-11 w-full"
-                    aria-label={`Call Elly Magari at ${settings.phone}`}
+                    aria-label={`Call Finfix Motors at ${settings.phone}`}
                   >
                     <a href={`tel:${settings.phone}`}>
                       <Phone className="size-4" aria-hidden="true" />
