@@ -165,3 +165,5 @@ scripts/                generate-brand-assets.ts, rebrand-finfix.ts
 
 > Inventory entries shipped with the seed are **sample placeholders** — replace them
 > with real stock from the admin dashboard.
+#   f i n f i x - m o t o r s  
+ 
